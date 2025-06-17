@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext'; // ✅ Import du contexte
+import { useAuth } from '../context/AuthContext'; //  Import du contexte
 
 const EditExerciceModal = ({ exercice, onClose, onSuccess }) => {
-  const { user } = useAuth(); // ✅ Récupération du token
+  const { user } = useAuth(); //  Récupération du token
   const [form, setForm] = useState({
     nom: exercice.nom || '',
     description: exercice.description || '',
@@ -36,7 +36,7 @@ const EditExerciceModal = ({ exercice, onClose, onSuccess }) => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${user.token}`, // ✅ Ajout du token
+            Authorization: `Bearer ${user.token}`, //  Ajout du token
             'Content-Type': 'multipart/form-data',
           },
         }

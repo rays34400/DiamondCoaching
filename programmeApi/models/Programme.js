@@ -19,7 +19,7 @@ const programmeSchema = new mongoose.Schema({
   },
   keyEntraineur: {
     type: String,
-    required: true, // Lien vers l'entraîneur qui a créé ce programme
+    required: true, 
   },
 }, {
   timestamps: true

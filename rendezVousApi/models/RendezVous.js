@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const rendezVousSchema = new mongoose.Schema({
-  date: { type: String, required: true }, // ex: "2025-06-18"
-  heure: { type: String, required: true }, // ex: "13:30"
+  date: { type: String, required: true }, 
+  heure: { type: String, required: true }, 
   keyClient: { type: String, required: true },
   keyEntraineur: { type: String, required: true },
   statut: {

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; // 🔑 Importer le contexte
 
 const AjouterExerciceModal = ({ programmeId, onClose, onSuccess }) => {
-  const { user } = useAuth(); // 🔑 Récupérer l'utilisateur connecté
+  const { user } = useAuth(); //  Récupérer l'utilisateur connecté
 
   const [form, setForm] = useState({
     nom: '',
@@ -35,7 +35,7 @@ const AjouterExerciceModal = ({ programmeId, onClose, onSuccess }) => {
     try {
       await axios.post('http://localhost:3004/api/exercices/add', formData, {
         headers: {
-          Authorization: `Bearer ${user.token}`, // ✅ Ajouter le token
+          Authorization: `Bearer ${user.token}`, //  Ajouter le token
         },
       });
       alert('Exercice ajouté avec succès.');

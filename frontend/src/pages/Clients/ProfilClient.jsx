@@ -147,7 +147,7 @@ const ProfilClient = () => {
       />
     )}
 
-    {/* Ajout ici des rendez-vous du client */}
+    
     <ListeRendezVousClient keyClient={client.keyClient} />
   </div>
 );

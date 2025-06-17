@@ -67,7 +67,7 @@ exports.deleteExercice = async (req, res) => {
   }
 };
 
-// 🔍 Récupérer un exercice par son ID
+//  Récupérer un exercice par son ID
 exports.getExerciceById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -81,7 +81,7 @@ exports.getExerciceById = async (req, res) => {
   }
 };
 
-// 🛠 Modifier un exercice
+//  Modifier un exercice
 exports.updateExercice = async (req, res) => {
   try {
     const { id } = req.params;

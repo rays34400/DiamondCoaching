@@ -27,19 +27,19 @@ const clientSchema = new mongoose.Schema({
     required: true,
   },
   photoProfile: {
-    type: String, // nom du fichier image ou URL
+    type: String, 
     default: '',
   },
-  photo: [
+  photo: [           //pour fonctionaliter futur = ajouter des photos de soi genre facebook 
     {
-      type: String, // tableau de chemins vers les images
+      type: String, 
       default: [],
     }
   ],
   role: {
     type: String,
-    default: 'client', // valeur par défaut
-    enum: ['client'], // on peut étendre plus tard si besoin
+    default: 'client', 
+    enum: ['client'], 
   },
   keyClient: {
   type: String,

@@ -59,10 +59,10 @@
   color: #ffffff;
   background: none;
   border: none;
-  font-size: 1.1rem; /* Taille augmentée */
-  font-weight: 600; /* Texte plus gras */
-  text-transform: uppercase; /* Majuscules */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police moderne */
+  font-size: 1.1rem; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 1px;
   text-decoration: none;
   cursor: pointer;

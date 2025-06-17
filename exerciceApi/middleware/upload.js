@@ -2,13 +2,13 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// 📂 Crée le dossier s’il n’existe pas
+//  Crée le dossier s’il n’existe pas
 const uploadDir = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// 🎯 Configuration du stockage
+//  Configuration du stockage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadDir);
@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// 🎯 Filtrage des types MIME
+//  Filtrage des types 
 const fileFilter = (req, file, cb) => {
   const allowedMimeTypes = [
     'image/jpeg',
@@ -36,7 +36,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// 📦 Middleware multer pour plusieurs fichiers
+// Middleware multer pour plusieurs fichiers
 const upload = multer({ storage, fileFilter });
 
 module.exports = upload;

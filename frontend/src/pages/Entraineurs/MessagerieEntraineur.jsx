@@ -31,7 +31,7 @@ const MessagerieEntraineur = ({ keyClient }) => {
     if (user?.id && user?.token) fetchKey();
   }, [user]);
 
-  // 3. Load history, join room, set listener
+  
   useEffect(() => {
     const fetchMessages = async () => {
       const res = await axios.get(
@@ -51,7 +51,7 @@ const MessagerieEntraineur = ({ keyClient }) => {
     };
   }, [keyClient, keyEntraineur, socket]);
 
-  // 4. Auto-scroll to latest message
+  
   useEffect(() => {
     const container = document.querySelector('.messages-list');
     if (container) container.scrollTop = container.scrollHeight;

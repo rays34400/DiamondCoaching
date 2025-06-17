@@ -1,6 +1,6 @@
 const RendezVous = require('../models/RendezVous');
 
-// 1. ➕ Prise de rendez-vous (client)
+//  Prise de rendez-vous (client)
 exports.createRendezVous = async (req, res) => {
   try {
     const { date, heure, keyClient, keyEntraineur } = req.body;

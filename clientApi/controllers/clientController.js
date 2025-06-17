@@ -27,7 +27,7 @@ exports.registerClient = async (req, res) => {
       adresse,
       telephone,
       photoProfile,
-      keyClient, // 🔑 Ajouté ici
+      keyClient, 
     });
 
     await newClient.save();
@@ -159,6 +159,7 @@ exports.updatePhotoProfile = async (req, res) => {
   }
 };
 
+//supprimer client
 exports.deleteClient = async (req, res) => {
   try {
     const { id } = req.params;

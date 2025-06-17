@@ -12,7 +12,7 @@ const DemandeAffectationSchema = new mongoose.Schema({
   },
   statut: {
     type: String,
-    default: 'en_attente' // 'accepte' après validation
+    default: 'en_attente' 
   },
   date: {
     type: Date,

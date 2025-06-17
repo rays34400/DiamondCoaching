@@ -6,7 +6,7 @@ const { verifyToken, authorizeRole } = require('../middleware/authEntraineur');
 // Ajouter un programme (réservé aux entraîneurs)
 router.post('/add', verifyToken, authorizeRole('entraineur'), programmeController.createProgramme);
 
-// Récupérer les programmes d’un entraîneur (publique ou sécurisé si nécessaire)
+// Récupérer les programmes d’un entraîneur 
 router.get('/entraineur/:key', programmeController.getProgrammesByEntraineur);
 
 // Modifier un programme (réservé aux entraîneurs)

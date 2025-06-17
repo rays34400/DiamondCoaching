@@ -12,14 +12,14 @@ const ProgrammesAffectesClient = () => {
 
   const fetchProgrammesAffectes = async () => {
     try {
-      // Étape 1 : récupérer keyClient
+      //  récupérer keyClient
       const keyRes = await axios.get('http://localhost:3001/api/clients/key', {
         headers: { Authorization: `Bearer ${user.token}` },
       });
 
       const keyClient = keyRes.data.keyClient;
 
-      // Étape 2 : appeler l'API pour obtenir les programmes affectés
+      //  appeler l'API pour obtenir les programmes affectés
       const progRes = await axios.get(`http://localhost:3007/api/affectations/programmesClientComplet/${keyClient}`);
       setProgrammes(progRes.data);
     } catch (error) {

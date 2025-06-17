@@ -29,9 +29,9 @@ mongoose.connect(process.env.MONGODB_URI, {
   console.log('✅ Connexion à MongoDB réussie');
   const PORT = process.env.PORT || 3004;
   app.listen(PORT, () => {
-    console.log(`🚀 Serveur Exercice démarré sur http://localhost:${PORT}`);
+    console.log(` Serveur Exercice démarré sur http://localhost:${PORT}`);
   });
 })
 .catch((err) => {
-  console.error('❌ Erreur de connexion à MongoDB :', err);
+  console.error(' Erreur de connexion à MongoDB :', err);
 });

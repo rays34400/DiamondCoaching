@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Dossier statique pour les futurs fichiers (s'ils sont ajoutés)
+// Dossier statique pour les futurs fichiers 
 app.use('/uploads/programmes', express.static(path.join(__dirname, 'uploads/programmes')));
 
 // Routes
@@ -30,9 +30,9 @@ mongoose.connect(process.env.MONGO_URI, {
 
   const PORT = process.env.PORT || 3003;
   app.listen(PORT, () => {
-    console.log(`🚀 Serveur Programme démarré sur http://localhost:${PORT}`);
+    console.log(` Serveur Programme démarré sur http://localhost:${PORT}`);
   });
 })
 .catch((err) => {
-  console.error('❌ Erreur de connexion à MongoDB :', err);
+  console.error(' Erreur de connexion à MongoDB :', err);
 });

@@ -9,7 +9,7 @@ const app = express();
 dotenv.config();
 
 // Middleware global
-app.use(cors()); // ✅ ajouté
+app.use(cors()); // 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,9 +30,9 @@ mongoose.connect(process.env.MONGODB_URI, {
   // Démarrer le serveur
   const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
-    console.log(`🚀 Serveur client démarré sur http://localhost:${PORT}`);
+    console.log(` Serveur client démarré sur http://localhost:${PORT}`);
   });
 })
 .catch(err => {
-  console.error('❌ Erreur de connexion à MongoDB :', err);
+  console.error(' Erreur de connexion à MongoDB :', err);
 });

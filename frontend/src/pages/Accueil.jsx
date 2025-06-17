@@ -32,7 +32,7 @@ function Accueil() {
         </div>
       </section>
 
-      {/* ✅ Texte ajouté ici */}
+      
       <section className="accueil-specialites">
         <p>
           Nos coachs couvrent une grande variété de spécialités : musculation, boxe, yoga, sport santé, préparation mentale, et bien d'autres.

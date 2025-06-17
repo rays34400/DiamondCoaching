@@ -52,7 +52,7 @@ const InscriptionEntraineur = () => {
       const form = new FormData();
       for (const key in formData) {
         if (key === 'disponibilites') {
-          form.append(key, JSON.stringify(formData[key])); // Convertit le tableau en JSON string
+          form.append(key, JSON.stringify(formData[key]));
         } else if (formData[key]) {
           form.append(key, formData[key]);
         }
@@ -76,7 +76,7 @@ const InscriptionEntraineur = () => {
     <div className="entraineur-inscription-container">
       <h2 className='title'>Inscription Entraîneur</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className="inscription-form">
-        {/* Champs existants */}
+        
         {['nom', 'prenom', 'email', 'password', 'adresse', 'telephone', 'specialite'].map((field) => (
           <div className="form-group" key={field}>
             <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label>
@@ -90,7 +90,7 @@ const InscriptionEntraineur = () => {
           <input type="file" name="photoProfile" accept="image/*" onChange={handleChange} />
         </div>
 
-        {/* Disponibilités */}
+       
         <div className="form-group">
           <label>Jour disponible</label>
           <select value={selectedJour} onChange={(e) => setSelectedJour(e.target.value)}>

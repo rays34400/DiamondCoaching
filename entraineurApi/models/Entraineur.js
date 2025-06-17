@@ -39,7 +39,7 @@ const entraineurSchema = new mongoose.Schema({
     },
     heures: [
       {
-        type: String, // ex: "08:00", "09:30", "13:00"
+        type: String, 
       }
     ]
   }

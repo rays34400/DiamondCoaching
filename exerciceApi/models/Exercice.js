@@ -11,16 +11,16 @@ const exerciceSchema = new mongoose.Schema({
     default: '',
   },
   image: {
-    type: String, // chemin du fichier image uploadé
+    type: String, 
   },
   video: {
-    type: String, // chemin du fichier vidéo uploadée
+    type: String, 
   },
   note: {
-    type: String, // commentaire ou conseil
+    type: String, 
   },
   programmeId: {
-    type: mongoose.Schema.Types.String, // string si vous gardez des IDs simples
+    type: mongoose.Schema.Types.String, 
     required: true,
   },
 }, { timestamps: true });

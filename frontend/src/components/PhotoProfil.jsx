@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const PhotoProfil = ({ photo, onPhotoChange }) => {
   return (

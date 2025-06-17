@@ -17,7 +17,7 @@ exports.registerEntraineur = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const photoProfile = req.file ? req.file.filename : '';
 
-    // 🔑 Générer une clé unique pour l'entraîneur
+    //  Générer une clé unique pour l'entraîneur
     const keyEntraineur = `ENT-${uuidv4()}`;
 
     const newEntraineur = new Entraineur({
@@ -42,7 +42,7 @@ exports.registerEntraineur = async (req, res) => {
 };
 
 
-// ✅ Connexion
+//  Connexion
 exports.loginEntraineur = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -92,7 +92,7 @@ exports.updateDisponibilites = async (req, res) => {
   }
 };
 
-// 📥 Récupérer tous les entraîneurs
+//  Récupérer tous les entraîneurs
 exports.getAllEntraineurs = async (req, res) => {
   try {
     const entraineurs = await Entraineur.find();
@@ -102,7 +102,7 @@ exports.getAllEntraineurs = async (req, res) => {
   }
 };
 
-// ✅ Obtenir un entraîneur par ID
+//  Obtenir un entraîneur par ID
 exports.getEntraineurById = async (req, res) => {
   try {
     const entraineur = await Entraineur.findById(req.params.id).select('-password');
@@ -116,7 +116,7 @@ exports.getEntraineurById = async (req, res) => {
   }
 };
 
-// ✅ Mise à jour des infos (sauf photo)
+//  Mise à jour des infos (sauf photo)
 exports.updateEntraineur = async (req, res) => {
   try {
     const { id } = req.params;
@@ -150,7 +150,7 @@ exports.getEntraineurByKey = async (req, res) => {
   }
 };
 
-// ✅ Mise à jour de la photo
+// Mise à jour de la photo
 exports.updatePhotoProfile = async (req, res) => {
   try {
     const { id } = req.params;
@@ -176,7 +176,7 @@ exports.updatePhotoProfile = async (req, res) => {
   }
 };
 
-// ✅ Suppression du compte
+//  Suppression du compte
 exports.deleteEntraineur = async (req, res) => {
   try {
     const { id } = req.params;
@@ -190,7 +190,7 @@ exports.deleteEntraineur = async (req, res) => {
   }
 };
 
-// ✅ Récupération par nom
+//  Récupération par nom
 exports.getEntraineurByName = async (req, res) => {
   try {
     const { nom } = req.params;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import '../../styles/client/client-connexion.css'; // pour styling futur
+import '../../styles/client/client-connexion.css'; 
 
 const ConnexionClient = () => {
   const { login } = useAuth();
@@ -20,13 +20,13 @@ const ConnexionClient = () => {
         password
       });
 
-      // On récupère token et id du client
+      //  récupère token et id du client
       const { token, id } = res.data;
 
-      // On stocke dans le AuthContext + localStorage
+      //  stocke dans le AuthContext + localStorage
       login({ id, token, role: 'client' });
 
-      // On redirige vers la page de profil
+      //  redirige vers la page de profil
       navigate('/client/profil');
     } catch (error) {
       console.error(error);

@@ -9,7 +9,7 @@ const DemandesRecues = () => {
   const [demandes, setDemandes] = useState([]);
   const [clients, setClients] = useState({});
 
-  // Étape 1 : Récupérer le keyEntraineur via ID (nécessite un token)
+  //  Récupérer le keyEntraineur via ID 
   useEffect(() => {
     const fetchKey = async () => {
       try {
@@ -26,7 +26,7 @@ const DemandesRecues = () => {
     if (user?.id && user?.token) fetchKey();
   }, [user]);
 
-  // Étape 2 : Récupérer uniquement les demandes en attente (PAS besoin de token)
+  //  Récupérer uniquement les demandes en attente 
   useEffect(() => {
     const fetchDemandes = async () => {
       try {
@@ -35,7 +35,7 @@ const DemandesRecues = () => {
         const demandesEnAttente = res.data.filter(d => d.statut === 'en_attente');
         setDemandes(demandesEnAttente);
 
-        // Charger les infos clients (PAS besoin de token)
+        // Charger les infos clients 
         demandesEnAttente.forEach(async (demande) => {
           const key = demande.keyClient;
           if (!clients[key]) {
@@ -55,7 +55,7 @@ const DemandesRecues = () => {
     if (keyEntraineur) fetchDemandes();
   }, [keyEntraineur]);
 
-  // Étape 3 : Accepter une demande (NÉCESSITE un token)
+  //  Accepter une demande 
   const accepterDemande = async (id) => {
     try {
       await axios.put(`http://localhost:3007/api/demandes/accepter/${id}`, {}, {
