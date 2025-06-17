@@ -1,0 +1,117 @@
+/* Container principal */
+.liste-programmes-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 204, 255, 0.3);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Titre */
+.liste-programmes-container h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #00ccff;
+  text-shadow: 0 0 8px #00ccff;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+/* Liste */
+.programme-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Item */
+.programme-item {
+  background: rgba(20, 28, 48, 0.85);
+  padding: 20px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.programme-item:hover {
+  border-color: #00ccff;
+  box-shadow: 0 0 25px rgba(0, 204, 255, 0.3);
+}
+
+/* Contenu */
+.programme-item h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  color: #00e6ff;
+}
+
+.programme-item p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+}
+
+/* Boutons */
+.programme-buttons {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.programme-buttons button {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  background: rgba(0, 204, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.programme-buttons button:hover {
+  background: #00ccff;
+  transform: translateY(-2px);
+}
+
+/* Tooltip (dans le compo ExercicesTooltip) */
+.exercices-tooltip {
+  position: fixed;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  border: 1px solid #00ccff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Animations génériques */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

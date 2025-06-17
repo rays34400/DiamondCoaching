@@ -1,0 +1,120 @@
+/* Base du container */
+.client-connexion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Titre */
+.client-connexion-container h2 {
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+  color: #00ccff;
+  text-shadow: 0 0 8px #00ccff;
+}
+
+/* Formulaire */
+.connexion-form {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Groupes de champs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #cceeff;
+}
+
+/* Inputs */
+.connexion-form input[type="email"],
+.connexion-form input[type="password"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.connexion-form input:focus {
+  border-color: #00ccff;
+  box-shadow: 0 0 6px rgba(0, 204, 255, 0.5);
+  outline: none;
+}
+
+/* Bouton de connexion */
+.submit-button {
+  display: inline-block;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: transparent;
+  border: 2px solid #00ccff;
+  color: #00ccff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px #00ccff;
+}
+
+.submit-button:hover {
+  background-color: #00ccff;
+  color: #000000;
+  transform: scale(1.03);
+  box-shadow: 0 0 20px #00ccff;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .client-connexion-container {
+    padding: 40px 10px;
+  }
+  .connexion-form {
+    padding: 20px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

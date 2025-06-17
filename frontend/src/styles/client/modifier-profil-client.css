@@ -1,0 +1,79 @@
+/* Container principal du formulaire */
+.profil-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000, #001f3f);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 204, 255, 0.2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+}
+
+/* Titre du formulaire */
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #00ccff;
+  text-shadow: 0 0 8px #00ccff;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* Style général du formulaire */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Champs de saisie et selects */
+.form-input {
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(0,204,255,0.4);
+  border-radius: 12px;
+  color: #eef;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #00e6ff;
+  box-shadow: 0 0 8px rgba(0,230,255,0.4);
+}
+
+/* Label du champ */
+.form label {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: #ccc;
+}
+
+/* Bouton d'enregistrement */
+.form-button {
+  padding: 14px;
+  margin-top: 12px;
+  background: #00ccff;
+  color: #000;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s;
+  box-shadow: 0 0 12px rgba(0,204,255,0.3);
+}
+
+.form-button:hover {
+  background: #00e6ff;
+  box-shadow: 0 0 20px rgba(0,204,255,0.6);
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px);}
+  to   { opacity: 1; transform: translateY(0);}
+}

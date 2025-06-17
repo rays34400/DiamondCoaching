@@ -1,0 +1,130 @@
+/* === liste-rdv-entraineur.css === */
+
+/* Container principal */
+.liste-rdv-entraineur {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+}
+
+/* Titre */
+.liste-rdv-entraineur h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00ccff;
+  text-shadow: 0 0 8px #00ccff;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* Liste des rendez-vous */
+.liste-rdv-entraineur ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Item RDV */
+.liste-rdv-entraineur li {
+  position: relative;
+  background: rgba(20, 28, 48, 0.85);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  border-left: 4px solid rgba(0, 204, 255, 0.6);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.liste-rdv-entraineur li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+}
+
+/* Texte RDV */
+.liste-rdv-entraineur li strong,
+.liste-rdv-entraineur li em,
+.liste-rdv-entraineur li p {
+  display: block;
+  margin-bottom: 6px;
+  color: #d0d0d0;
+}
+
+/* Zone des boutons */
+.rdv-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Boutons d'action */
+.rdv-actions button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Style spécifique pour chaque action */
+.rdv-actions button:nth-child(1) {
+  background: #00ccff;
+  color: #000;
+}
+.rdv-actions button:nth-child(1):hover {
+  background: #00e6ff;
+}
+
+.rdv-actions button:nth-child(2) {
+  background: #00ccff;
+  color: #000;
+}
+.rdv-actions button:nth-child(2):hover {
+  background: #00e6ff;
+}
+
+.rdv-actions button:nth-child(3) {
+  background: transparent;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+}
+.rdv-actions button:nth-child(3):hover {
+  background: rgba(255, 77, 77, 0.2);
+}
+
+/* Message si aucun rdv */
+.liste-rdv-entraineur p {
+  text-align: center;
+  font-size: 1rem;
+  color: #d0d0d0;
+  margin-top: 20px;
+}
+
+/* Animations clés */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive pour écrans mobiles */
+@media (max-width: 480px) {
+  .liste-rdv-entraineur {
+    padding: 20px 10px;
+  }
+  .rdv-actions {
+    flex-direction: column;
+  }
+  .rdv-actions button {
+    width: 100%;
+  }
+}

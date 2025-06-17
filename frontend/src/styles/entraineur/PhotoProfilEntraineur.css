@@ -1,0 +1,38 @@
+.photo-profil-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.photo-profil-container .profil-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 204, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.photo-profil-container .profil-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 230, 255, 0.5);
+}
+
+.change-photo-button {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: #00ccff;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.6);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.change-photo-button:hover {
+  background: #00e6ff;
+  transform: translateY(-2px);
+}

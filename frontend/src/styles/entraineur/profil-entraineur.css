@@ -1,0 +1,167 @@
+/* profil-entraineur.css */
+
+/* Conteneur principal */
+.entraineur-profil-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: linear-gradient(to bottom, #000, #001f3f);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+/* Titre */
+.entraineur-profil-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00ccff;
+  text-shadow: 0 0 8px #00ccff;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+/* Photo profil */
+.photo-profil-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.photo-profil-container img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 204, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.photo-profil-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 230, 255, 0.5);
+}
+
+.change-photo-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #00ccff;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.6);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.change-photo-button:hover {
+  background: #00e6ff;
+  transform: translateY(-2px);
+}
+
+/* Infos profil */
+.infos-profil {
+  text-align: left;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.infos-profil p {
+  background: rgba(20, 28, 48, 0.8);
+  padding: 10px 12px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border-left: 4px solid rgba(0, 204, 255, 0.6);
+  font-size: 0.95rem;
+}
+
+/* Actions */
+.profil-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.profil-actions button,
+.profil-actions .view-rdv-button {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profil-actions .edit-button,
+.profil-actions .view-rdv-button {
+  background: #00ccff;
+  color: #000;
+  box-shadow: 0 0 12px rgba(0, 204, 255, 0.4);
+}
+
+.profil-actions .edit-button:hover,
+.profil-actions .view-rdv-button:hover {
+  background: #00e6ff;
+  transform: translateY(-2px);
+}
+
+.profil-actions .delete-button {
+  background: transparent;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+}
+
+.profil-actions .delete-button:hover {
+  background: #ff4d4d;
+  color: #000;
+  transform: scale(1.03);
+}
+
+/* Disponibilités */
+.disponibilites-section {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.disponibilites-section h3 {
+  color: #00ccff;
+  margin-bottom: 12px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.disponibilites-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.disponibilites-section li {
+  background: rgba(20, 28, 48, 0.85);
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.disponibilites-section li:hover {
+  background: rgba(20, 28, 48, 0.95);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

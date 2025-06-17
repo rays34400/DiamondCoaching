@@ -1,0 +1,146 @@
+.accueil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+.accueil-header {
+  background-image: url('/images/coach-bg.jpg'); /* Remplace avec ton image */
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  animation: fadeIn 1s ease-out;
+}
+
+.accueil-header h1 {
+  font-size: 3.2rem;
+  margin-bottom: 20px;
+  color: #00ccff;
+  text-shadow: 0 0 15px #00ccff;
+}
+
+.accueil-header p {
+  font-size: 1.4rem;
+  color: #e0e0e0;
+}
+
+.accueil-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.accueil-button {
+  padding: 14px 28px;
+  background-color: transparent;
+  border: 2px solid #00ccff;
+  color: #00ccff;
+  text-decoration: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px #00ccff;
+}
+
+.accueil-button:hover {
+  background-color: #00ccff;
+  color: #000;
+  box-shadow: 0 0 20px #00ccff;
+  transform: scale(1.05);
+}
+
+.accueil-info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.06);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card p {
+  color: #d0d0d0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.accueil-specialites {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 30px 20px;
+  border-radius: 20px;
+  max-width: 900px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  margin-bottom: 50px;
+  animation: fadeInUp 1s ease-out;
+}
+
+.accueil-specialites p {
+  font-size: 1.15rem;
+  color: #eeeeee;
+  line-height: 1.6;
+}
+
+.accueil-footer {
+  padding: 20px 0;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

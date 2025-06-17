@@ -1,0 +1,130 @@
+/* 1️⃣ Fond uniforme comme l'accueil */
+body, html {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.liste-entraineurs {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+/* 2️⃣ Titre stylé central */
+.liste-entraineurs h2 {
+  font-size: 2.6rem;
+  text-align: center;
+  color: #00ccff;
+  margin-bottom: 40px;
+  text-shadow: 0 0 12px #00ccff;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+/* 3️⃣ Message succès/erreur */
+.liste-entraineurs p.message {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00ff99;
+  font-size: 1.1rem;
+}
+
+/* 4️⃣ Grille souple */
+.entraineur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+}
+
+/* 5️⃣ Cartes élégantes */
+.entraineur-card {
+  background: rgba(20, 28, 48, 0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.entraineur-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(0, 204, 255, 0.4);
+}
+
+/* 6️⃣ Photo ronde */
+.entraineur-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0, 204, 255, 0.6);
+  margin-bottom: 16px;
+}
+
+/* 7️⃣ Infos textuelles */
+.entraineur-card h4 {
+  font-size: 1.2rem;
+  color: #00ccff;
+  margin: 8px 0;
+}
+
+.entraineur-card p {
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  margin: 4px 0;
+  text-align: center;
+}
+
+/* 8️⃣ Bouton moderne */
+.entraineur-card button {
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 2px solid #00ccff;
+  color: #00ccff;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px #00ccff;
+}
+
+.entraineur-card button:hover {
+  background: #00ccff;
+  color: #000;
+  transform: scale(1.03);
+  box-shadow: 0 0 24px #00ccff;
+}
+
+/* 9️⃣ Structure responsive */
+@media (max-width: 600px) {
+  .entraineur-card {
+    padding: 16px;
+  }
+  .entraineur-photo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 12px;
+  }
+}
+
+/* 🔟 Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

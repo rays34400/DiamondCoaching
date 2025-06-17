@@ -1,0 +1,105 @@
+.navbar {
+  background: linear-gradient(to right, #000000, #001f3f);
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar-logo a {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #00ccff;
+  text-decoration: none;
+  text-shadow: 0 0 8px rgba(0, 204, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo a:hover {
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links a,
+.navbar-links button {
+  color: #ffffff;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar-links a:hover,
+.navbar-links button:hover {
+  background-color: rgba(0, 204, 255, 0.2);
+  color: #00ccff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+}
+.navbar-links a,
+.navbar-links button {
+  color: #ffffff;
+  background: none;
+  border: none;
+  font-size: 1.1rem; /* Taille augmentée */
+  font-weight: 600; /* Texte plus gras */
+  text-transform: uppercase; /* Majuscules */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police moderne */
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+/* Bouton burger (mobile) */
+.navbar .menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #00ccff;
+  cursor: pointer;
+}
+
+/* Menu déroulant sur mobile */
+@media (max-width: 768px) {
+  .navbar .menu-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #001f3f, #000000);
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 204, 255, 0.2);
+    padding: 10px;
+    z-index: 998;
+  }
+
+  .navbar-links.show {
+    display: flex;
+  }
+}

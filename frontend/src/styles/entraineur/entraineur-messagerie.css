@@ -1,0 +1,147 @@
+/* mes-contacts-entraineur-messagerie.css */
+
+/* Conteneur principal */
+.mes-contacts-entraineur-mess-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre */
+.mes-contacts-entraineur-mess-container h2 {
+  text-align: center;
+  color: #00ccff;
+  font-size: 2rem;
+  text-shadow: 0 0 8px #00ccff;
+  animation: fadeInDown 0.8s ease-out;
+  margin-bottom: 30px;
+}
+
+/* Grille de contacts */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* Carte d’un client */
+.contact-card {
+  background: rgba(20, 28, 48, 0.8);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(0, 204, 255, 0.4);
+}
+
+/* Photo ronde */
+.contact-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 204, 255, 0.6);
+  margin-bottom: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 230, 255, 0.5);
+}
+
+/* Texte */
+.contact-card h4 {
+  font-size: 1.2rem;
+  color: #00e6ff;
+  margin: 8px 0;
+}
+
+.contact-card p {
+  margin: 4px 0;
+  color: #d0d0d0;
+  font-size: 0.9rem;
+}
+
+/* Bouton ouvrir conversation */
+.contact-card button {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border: 2px solid #00ccff;
+  background: transparent;
+  color: #00ccff;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-card button:hover {
+  background: #00ccff;
+  color: #000;
+  box-shadow: 0 0 12px rgba(0, 204, 255, 0.5);
+  transform: scale(1.03);
+}
+
+/* Section conversation */
+.messagerie-section {
+  margin-top: 40px;
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Bouton fermer */
+.close-btn {
+  background: #ff4d4d;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 77, 77, 0.5);
+}
+
+/* Message si rien */
+.mes-contacts-entraineur-mess-container p {
+  text-align: center;
+  color: #d0d0d0;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+/* Animations clés */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adaptation mobile */
+@media (max-width: 480px) {
+  .mes-contacts-entraineur-mess-container {
+    padding: 20px 10px;
+  }
+  .contact-card img {
+    width: 80px;
+    height: 80px;
+  }
+}

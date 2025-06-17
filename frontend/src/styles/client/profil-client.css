@@ -1,0 +1,327 @@
+/* profil-client.css */
+
+/* Conteneur principal */
+.client-profil-container {
+  max-width: 550px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+/* Titre */
+.client-profil-container h2 {
+  font-size: 1.9rem;
+  margin-bottom: 20px;
+  color: #00ccff;
+  text-shadow: 0 0 8px #00ccff;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+/* Wrapper pour photo + bouton changement */
+.photo-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Photo de profil retravaillée */
+.client-profil-container .photo-profil {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(0, 204, 255, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.client-profil-container .photo-profil:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 230, 255, 0.5);
+}
+
+/* Bouton changer de photo positionné */
+.photo-wrapper .change-photo-btn {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0, 204, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.photo-wrapper .change-photo-btn:hover {
+  background: #00e6ff;
+}
+
+/* Infos client */
+.profil-infos {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.profil-infos p {
+  background: rgba(20, 28, 48, 0.85);
+  padding: 8px 12px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border-left: 3px solid rgba(0, 204, 255, 0.6);
+  font-size: 0.95rem;
+}
+
+/* Actions Modifier / Supprimer */
+.profil-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 10px 24px;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  background: #00ccff;
+  color: #000;
+  box-shadow: 0 0 12px rgba(0, 204, 255, 0.4);
+}
+
+.edit-button:hover {
+  background: #00e6ff;
+  transform: translateY(-2px);
+}
+
+.delete-button {
+  background: transparent;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+}
+
+.delete-button:hover {
+  background: #ff4d4d;
+  color: #000;
+  transform: scale(1.03);
+}
+
+/* Rendez-vous */
+.liste-rdv-client {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.liste-rdv-client h3 {
+  font-size: 1.4rem;
+  color: #00ccff;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.liste-rdv-client ul {
+  padding: 0;
+  list-style: none;
+}
+
+.liste-rdv-client li {
+  position: relative;
+  background: rgba(20, 28, 48, 0.9);
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  transition: background 0.3s ease;
+}
+
+.liste-rdv-client li:hover {
+  background: rgba(20, 28, 48, 1);
+}
+
+/* Bouton Annuler RDV */
+.rdv-actions {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+
+.rdv-actions button {
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.rdv-actions button:hover {
+  background: rgba(255, 77, 77, 0.2);
+}
+/* Profil photo wrapper */
+/* Profil photo wrapper */
+.photo-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+}
+
+/* Photo de profil stylisée */
+.photo-container .profil-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(0, 204, 255, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.photo-container .profil-photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 230, 255, 0.5);
+}
+
+/* Bouton pour changer la photo */
+.photo-container .change-photo-button {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  bottom: -6px;
+  right: -6px;
+  background: rgba(0, 204, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 204, 255, 0.5);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.photo-container .change-photo-button:hover {
+  background: #00e6ff;
+  transform: scale(1.1);
+}
+
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Edit modal overlay */
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+  z-index: 1000;
+}
+
+/* Modal box */
+.edit-modal .modal-content {
+  background: linear-gradient(to bottom, #001f3f, #000);
+  padding: 30px 25px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+  width: 90%;
+  max-width: 400px;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: slideDown 0.4s ease-out;
+}
+
+/* Modal title */
+.edit-modal .modal-content h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #00ccff;
+  text-shadow: 0 0 6px #00ccff;
+}
+
+/* Inputs */
+.edit-modal .modal-content form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 2px solid rgba(0,204,255,0.4);
+  border-radius: 8px;
+  background: rgba(20,28,48,0.8);
+  color: #fff;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.edit-modal .modal-content form input:focus {
+  border-color: #00e6ff;
+  outline: none;
+}
+
+/* Buttons */
+.edit-modal .modal-content form button {
+  width: calc(50% - 8px);
+  margin: 8px 4px;
+  padding: 10px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.edit-modal .modal-content form button[type="submit"] {
+  background: #00ccff;
+  color: #000;
+}
+
+.edit-modal .modal-content form button[type="submit"]:hover {
+  background: #00e6ff;
+  transform: translateY(-2px);
+}
+
+.edit-modal .modal-content form button[type="button"] {
+  background: transparent;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+}
+
+.edit-modal .modal-content form button[type="button"]:hover {
+  background: #ff4d4d;
+  color: #000;
+  transform: scale(1.03);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

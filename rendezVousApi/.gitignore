@@ -1,0 +1,17 @@
+# Ne pas suivre les modules installés
+node_modules/
+
+# Ne pas suivre les fichiers de log
+*.log
+
+# Ne pas suivre les variables d’environnement
+.env
+
+# Pour éviter certains fichiers temporaires
+.DS_Store
+*.swp
+*.swo
+
+# Pour éviter les fichiers de build React
+build/
+dist/
