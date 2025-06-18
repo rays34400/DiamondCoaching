@@ -11,7 +11,7 @@ const MesContactsEntraineur = () => {
   useEffect(() => {
     const fetchKey = async () => {
       try {
-        const res = await axios.get(`http://localhost:3002/api/entraineurs/${user.id}`, {
+        const res = await axios.get(`https://entraineurapi.onrender.com/api/entraineurs/${user.id}`, {
           headers: { Authorization: `Bearer ${user.token}` }
         });
         setKeyEntraineur(res.data.keyEntraineur);
@@ -25,13 +25,13 @@ const MesContactsEntraineur = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const res = await axios.get(`http://localhost:3007/api/demandes/clientsContact/${keyEntraineur}`);
+        const res = await axios.get(`https://affectationapi.onrender.com/api/demandes/clientsContact/${keyEntraineur}`);
         const demandes = res.data;
 
         const clientDetails = await Promise.all(
           demandes.map(async (d) => {
             try {
-              const r = await axios.get(`http://localhost:3001/api/clients/bykey/${d.keyClient}`);
+              const r = await axios.get(`https://clientapi-u3uk.onrender.com/api/clients/bykey/${d.keyClient}`);
               return r.data;
             } catch (err) {
               console.error(`Erreur client ${d.keyClient}`, err);
@@ -59,7 +59,7 @@ const MesContactsEntraineur = () => {
           {clients.map(client => (
             <div key={client._id} className="contact-card">
               <img
-                src={`http://localhost:3001/uploads/${client.photoProfile || 'default.png'}`}
+                src={`https://clientapi-u3uk.onrender.com/uploads/${client.photoProfile || 'default.png'}`}
                 alt="profil"
                 width="100"
               />

@@ -32,7 +32,7 @@ const EditExerciceModal = ({ exercice, onClose, onSuccess }) => {
 
     try {
       await axios.put(
-        `http://localhost:3004/api/exercices/modifier/${exercice._id}`,
+        `https://exerciceapi.onrender.com/api/exercices/modifier/${exercice._id}`,
         formData,
         {
           headers: {

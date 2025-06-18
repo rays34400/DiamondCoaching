@@ -22,7 +22,7 @@ const AjouterProgramme = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:3003/api/programmes/add', {
+      await axios.post('https://programmeapi.onrender.com/api/programmes/add', {
         ...form,
         keyEntraineur: user.id,
       }, {

@@ -20,7 +20,7 @@ const ListeProgrammes = () => {
 
   const fetchProgrammes = async () => {
     try {
-      const res = await axios.get(`http://localhost:3003/api/programmes/entraineur/${user.id}`, {
+      const res = await axios.get(`https://programmeapi.onrender.com/api/programmes/entraineur/${user.id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setProgrammes(res.data);
@@ -41,7 +41,7 @@ const ListeProgrammes = () => {
     if (!confirmation) return;
 
     try {
-      await axios.delete(`http://localhost:3003/api/programmes/delete/${id}`, {
+      await axios.delete(`https://programmeapi.onrender.com/api/programmes/delete/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       alert("Programme supprimé.");
@@ -56,7 +56,7 @@ const ListeProgrammes = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:3003/api/programmes/modifier/${selectedProgramme._id}`,
+        `https://programmeapi.onrender.com/api/programmes/modifier/${selectedProgramme._id}`,
         {
           nom: selectedProgramme.nom,
           niveau: selectedProgramme.niveau,

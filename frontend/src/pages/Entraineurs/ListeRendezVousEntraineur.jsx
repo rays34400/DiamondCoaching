@@ -14,7 +14,7 @@ const ListeRendezVousEntraineur = () => {
 
   const fetchRendezVous = async () => {
     try {
-      const res = await axios.get(`http://localhost:3008/api/rendezvous/entraineur/${keyEntraineur}`);
+      const res = await axios.get(`https://rendezvousapi.onrender.com/api/rendezvous/entraineur/${keyEntraineur}`);
       const rdvs = res.data;
       setRendezVous(rdvs);
 
@@ -24,7 +24,7 @@ const ListeRendezVousEntraineur = () => {
         rdvs.map(async (rdv) => {
           if (!clientData[rdv.keyClient]) {
             try {
-              const clientRes = await axios.get(`http://localhost:3001/api/clients/bykey/${rdv.keyClient}`);
+              const clientRes = await axios.get(`https://clientapi-u3uk.onrender.com/api/clients/bykey/${rdv.keyClient}`);
               clientData[rdv.keyClient] = clientRes.data;
             } catch (err) {
               console.error(`Erreur chargement client ${rdv.keyClient}`, err);
@@ -46,7 +46,7 @@ const ListeRendezVousEntraineur = () => {
 
   const updateStatut = async (id, newStatut) => {
     try {
-      await axios.put(`http://localhost:3008/api/rendezvous/statut/${id}`, { statut: newStatut });
+      await axios.put(`https://rendezvousapi.onrender.com/api/rendezvous/statut/${id}`, { statut: newStatut });
       setRendezVous(prev => prev.map(r => r._id === id ? { ...r, statut: newStatut } : r));
     } catch (err) {
       console.error("Erreur lors de la mise à jour du statut", err);
@@ -55,7 +55,7 @@ const ListeRendezVousEntraineur = () => {
 
   const deleteRdv = async (id) => {
     try {
-      await axios.delete(`http://localhost:3008/api/rendezvous/delete/${id}`);
+      await axios.delete(`https://rendezvousapi.onrender.com/api/rendezvous/delete/${id}`);
       setRendezVous(prev => prev.filter(r => r._id !== id));
     } catch (err) {
       console.error("Erreur lors de la suppression", err);

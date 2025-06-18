@@ -12,7 +12,7 @@ const DetailExercicesModal = ({ programmeId, onClose }) => {
 
   const fetchExercices = async () => {
     try {
-      const res = await axios.get(`http://localhost:3004/api/exercices/programme/${programmeId}`);
+      const res = await axios.get(`https://exerciceapi.onrender.com/api/exercices/programme/${programmeId}`);
       setExercices(res.data);
     } catch (error) {
       console.error("Erreur lors du chargement des exercices :", error);
@@ -30,7 +30,7 @@ const DetailExercicesModal = ({ programmeId, onClose }) => {
     const confirmation = window.confirm("Voulez-vous vraiment supprimer cet exercice ?");
     if (!confirmation) return;
     try {
-      await axios.delete(`http://localhost:3004/api/exercices/delete/${id}`, {
+      await axios.delete(`https://exerciceapi.onrender.com/api/exercices/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -78,7 +78,7 @@ const DetailExercicesModal = ({ programmeId, onClose }) => {
                     <div>
                       <strong>Image :</strong><br />
                       <img
-                        src={`http://localhost:3004/uploads/${ex.image}`}
+                        src={`https://exerciceapi.onrender.com/uploads/${ex.image}`}
                         alt={ex.nom}
                         className="exercice-media"
                       />
@@ -89,7 +89,7 @@ const DetailExercicesModal = ({ programmeId, onClose }) => {
                     <div>
                       <strong>Vidéo :</strong><br />
                       <video controls className="exercice-media">
-                        <source src={`http://localhost:3004/uploads/exercices/${ex.video}`} type="video/mp4" />
+                        <source src={`https://exerciceapi.onrender.com/uploads/exercices/${ex.video}`} type="video/mp4" />
                         Votre navigateur ne supporte pas la vidéo.
                       </video>
                     </div>

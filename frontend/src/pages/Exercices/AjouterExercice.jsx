@@ -31,7 +31,7 @@ const AjouterExerciceModal = ({ programmeId, onClose, onExerciceAjoute }) => {
     if (form.video) formData.append('video', form.video);
 
     try {
-      await axios.post('http://localhost:3004/api/exercices/add', formData);
+      await axios.post('https://exerciceapi.onrender.com/api/exercices/add', formData);
       alert('Exercice ajouté !');
       onClose();
       onExerciceAjoute(); // pour recharger les données si besoin

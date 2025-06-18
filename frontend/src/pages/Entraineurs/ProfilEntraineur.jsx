@@ -24,7 +24,7 @@ const ProfilEntraineur = () => {
 
     const fetchEntraineur = async () => {
       try {
-        const res = await axios.get(`http://localhost:3002/api/entraineurs/${user.id}`, {
+        const res = await axios.get(`https://entraineurapi.onrender.com/api/entraineurs/${user.id}`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -43,7 +43,7 @@ const ProfilEntraineur = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:3002/api/entraineurs/update/${user.id}`,
+        `https://entraineurapi.onrender.com/api/entraineurs/update/${user.id}`,
         {
           nom: entraineur.nom,
           prenom: entraineur.prenom,
@@ -71,7 +71,7 @@ const ProfilEntraineur = () => {
     if (!confirmation) return;
 
     try {
-      await axios.delete(`http://localhost:3002/api/entraineurs/delete/${user.id}`, {
+      await axios.delete(`https://entraineurapi.onrender.com/api/entraineurs/delete/${user.id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -94,7 +94,7 @@ const ProfilEntraineur = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:3002/api/entraineurs/update-photo/${user.id}`,
+        `https://entraineurapi.onrender.com/api/entraineurs/update-photo/${user.id}`,
         formData,
         {
           headers: {

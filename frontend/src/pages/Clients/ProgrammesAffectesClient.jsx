@@ -13,14 +13,14 @@ const ProgrammesAffectesClient = () => {
   const fetchProgrammesAffectes = async () => {
     try {
       //  récupérer keyClient
-      const keyRes = await axios.get('http://localhost:3001/api/clients/key', {
+      const keyRes = await axios.get('https://clientapi-u3uk.onrender.com/api/clients/key', {
         headers: { Authorization: `Bearer ${user.token}` },
       });
 
       const keyClient = keyRes.data.keyClient;
 
       //  appeler l'API pour obtenir les programmes affectés
-      const progRes = await axios.get(`http://localhost:3007/api/affectations/programmesClientComplet/${keyClient}`);
+      const progRes = await axios.get(`https://affectationapi.onrender.com/api/affectations/programmesClientComplet/${keyClient}`);
       setProgrammes(progRes.data);
     } catch (error) {
       console.error("Erreur dans fetchProgrammesAffectes :", error);

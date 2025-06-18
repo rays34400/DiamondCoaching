@@ -22,7 +22,7 @@ const ProfilClient = () => {
 
     const fetchClient = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/api/clients/${user.id}`, {
+        const res = await axios.get(`https://clientapi-u3uk.onrender.com/api/clients/${user.id}`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -41,7 +41,7 @@ const ProfilClient = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:3001/api/clients/update/${user.id}`,
+        `https://clientapi-u3uk.onrender.com/api/clients/update/${user.id}`,
         {
           nom: client.nom,
           prenom: client.prenom,
@@ -68,7 +68,7 @@ const ProfilClient = () => {
     if (!confirmation) return;
 
     try {
-      await axios.delete(`http://localhost:3001/api/clients/delete/${user.id}`, {
+      await axios.delete(`https://clientapi-u3uk.onrender.com/api/clients/delete/${user.id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -91,7 +91,7 @@ const ProfilClient = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:3001/api/clients/update-photo/${user.id}`,
+        `https://clientapi-u3uk.onrender.com/api/clients/update-photo/${user.id}`,
         formData,
         {
           headers: {

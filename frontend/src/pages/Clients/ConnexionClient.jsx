@@ -15,7 +15,7 @@ const ConnexionClient = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:3001/api/clients/login', {
+      const res = await axios.post('https://clientapi-u3uk.onrender.com/api/clients/login', {
         email,
         password
       });

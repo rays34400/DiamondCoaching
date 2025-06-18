@@ -9,7 +9,7 @@ const ListeRendezVousClient = ({ keyClient }) => {
   useEffect(() => {
     const fetchRendezVous = async () => {
       try {
-        const res = await axios.get(`http://localhost:3008/api/rendezvous/client/${keyClient}`);
+        const res = await axios.get(`https://rendezvousapi.onrender.com/api/rendezvous/client/${keyClient}`);
         setRendezVous(res.data);
       } catch (err) {
         console.error('Erreur chargement rendez-vous :', err);
@@ -21,7 +21,7 @@ const ListeRendezVousClient = ({ keyClient }) => {
 
   const deleteRdv = async (id) => {
     try {
-      await axios.delete(`http://localhost:3008/api/rendezvous/delete/${id}`);
+      await axios.delete(`https://rendezvousapi.onrender.com/api/rendezvous/delete/${id}`);
       setRendezVous(prev => prev.filter(r => r._id !== id));
     } catch (err) {
       console.error("Erreur lors de la suppression", err);

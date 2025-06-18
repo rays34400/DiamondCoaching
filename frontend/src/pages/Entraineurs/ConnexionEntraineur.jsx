@@ -15,7 +15,7 @@ const ConnexionEntraineur = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:3002/api/entraineurs/login', {
+      const res = await axios.post('https://entraineurapi.onrender.com/api/entraineurs/login', {
         email,
         password,
       });

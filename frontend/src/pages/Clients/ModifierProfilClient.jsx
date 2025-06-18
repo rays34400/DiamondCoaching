@@ -20,7 +20,7 @@ function ModifierProfilClient() {
 
   useEffect(() => {
     if (user?.id) {
-      axios.get(`http://localhost:3001/clients/byid/${user.id}`)
+      axios.get(`https://clientapi-u3uk.onrender.com/api/clients/byid/${user.id}`)
         .then(res => {
           const data = res.data;
           if (data.dateNaissance) {
@@ -57,7 +57,7 @@ function ModifierProfilClient() {
         formData.append('photo', photo);
       }
 
-      await axios.put(`http://localhost:3001/clients/modifier`, formData, {
+      await axios.put(`https://clientapi-u3uk.onrender.com/api/clients/modifier`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${user.token}`

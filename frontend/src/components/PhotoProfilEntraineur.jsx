@@ -4,7 +4,7 @@ const PhotoProfilEntraineur = ({ photoProfile, onChangePhoto }) => {
   return (
     <div className="photo-container">
       <img
-        src={`http://localhost:3002/uploads/${photoProfile}`}
+        src={`https://entraineurapi.onrender.com/uploads/${photoProfile}`}
         alt="Photo de profil"
         className="profil-photo"
       />

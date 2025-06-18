@@ -13,7 +13,7 @@ const MessagerieClient = ({ keyEntraineur }) => {
 
   // 1. Init Socket.IO
   useEffect(() => {
-    const newSocket = io('http://localhost:3009');
+    const newSocket = io('https://messageapi-1rc2.onrender.com');
     setSocket(newSocket);
     return () => newSocket.disconnect();
   }, []);
@@ -22,7 +22,7 @@ const MessagerieClient = ({ keyEntraineur }) => {
   useEffect(() => {
     const fetchKey = async () => {
       const res = await axios.get(
-        `http://localhost:3001/api/clients/${user.id}`,
+        `https://clientapi-u3uk.onrender.com/api/clients/${user.id}`,
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
       setKeyClient(res.data.keyClient);
@@ -34,7 +34,7 @@ const MessagerieClient = ({ keyEntraineur }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       const res = await axios.get(
-        `http://localhost:3009/api/messages/conversation/${keyClient}/${keyEntraineur}`
+        `https://messageapi-1rc2.onrender.com/api/messages/conversation/${keyClient}/${keyEntraineur}`
       );
       setMessages(res.data);
     };
@@ -64,7 +64,7 @@ const MessagerieClient = ({ keyEntraineur }) => {
       receiverKey: keyEntraineur,
       contenu: newMessage,
     };
-    const res = await axios.post(`http://localhost:3009/api/messages/send`, msgPayload);
+    const res = await axios.post(`https://messageapi-1rc2.onrender.com/api/messages/send`, msgPayload);
     socket?.emit('sendMessage', msgPayload);
     setMessages((prev) => [...prev, res.data.data]);
     setNewMessage('');

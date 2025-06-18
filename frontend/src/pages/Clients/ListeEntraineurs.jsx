@@ -11,7 +11,7 @@ const ListeEntraineurs = () => {
   useEffect(() => {
     const fetchEntraineurs = async () => {
       try {
-        const res = await axios.get('http://localhost:3002/api/entraineurs/all');
+        const res = await axios.get('https://entraineurapi.onrender.com/api/entraineurs/all');
         setEntraineurs(res.data);
       } catch (error) {
         console.error(error);
@@ -26,7 +26,7 @@ const getKeyClient = async () => {
 
   if (!token) return null;
 
-  const res = await axios.get('http://localhost:3001/api/clients/key', {
+  const res = await axios.get('https://clientapi-u3uk.onrender.com/api/clients/key', {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -39,7 +39,7 @@ const envoyerDemande = async (keyEntraineur) => {
   try {
     const keyClient = await getKeyClient();
 
-    const res = await axios.post('http://localhost:3007/api/demandes/envoyer', {
+    const res = await axios.post('https://affectationapi.onrender.com/api/demandes/envoyer', {
       keyClient,
       keyEntraineur,
     });
@@ -60,7 +60,7 @@ const envoyerDemande = async (keyEntraineur) => {
         {entraineurs.map(entraineur => (
           <div className="entraineur-card" key={entraineur._id}>
             <img
-              src={`http://localhost:3002/uploads/${entraineur.photoProfile || 'default.png'}`}
+              src={`https://entraineurapi.onrender.com/uploads/${entraineur.photoProfile || 'default.png'}`}
               alt={`${entraineur.nom} ${entraineur.prenom}`}
               className="entraineur-photo"
             />

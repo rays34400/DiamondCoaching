@@ -28,7 +28,7 @@ const ModalDisponibilites = ({ entraineur, setEntraineur, onClose }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.put(`http://localhost:3002/api/entraineurs/disponibilites/${entraineur.keyEntraineur}`, {
+      const response = await axios.put(`https://entraineurapi.onrender.com/api/entraineurs/disponibilites/${entraineur.keyEntraineur}`, {
         disponibilites: JSON.stringify(disponibilites)
       });
       alert("Disponibilités mises à jour avec succès.");

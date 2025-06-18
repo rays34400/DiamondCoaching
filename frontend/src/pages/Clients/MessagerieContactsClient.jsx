@@ -13,7 +13,7 @@ const MessagerieContactsClient = () => {
   useEffect(() => {
     const fetchKey = async () => {
       try {
-        const res = await axios.get('http://localhost:3001/api/clients/key', {
+        const res = await axios.get('https://clientapi-u3uk.onrender.com/api/clients/key', {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         setKeyClient(res.data.keyClient);
@@ -27,13 +27,13 @@ const MessagerieContactsClient = () => {
   useEffect(() => {
     const fetchEntraineurs = async () => {
       try {
-        const res = await axios.get(`http://localhost:3007/api/demandes/entraineursContact/${keyClient}`);
+        const res = await axios.get(`https://affectationapi.onrender.com/api/demandes/entraineursContact/${keyClient}`);
         const demandes = res.data;
 
         const entraineurDetails = await Promise.all(
           demandes.map(async (d) => {
             try {
-              const r = await axios.get(`http://localhost:3002/api/entraineurs/bykey/${d.keyEntraineur}`, {
+              const r = await axios.get(`https://entraineurapi.onrender.com/api/entraineurs/bykey/${d.keyEntraineur}`, {
                 headers: { Authorization: `Bearer ${user.token}` },
               });
               return r.data;
@@ -63,7 +63,7 @@ const MessagerieContactsClient = () => {
           {entraineurs.map(entraineur => (
             <div key={entraineur._id} className="contact-card">
               <img
-                src={`http://localhost:3002/uploads/${entraineur.photoProfile || 'default.png'}`}
+                src={`https://entraineurapi.onrender.com/uploads/${entraineur.photoProfile || 'default.png'}`}
                 alt="profil"
                 width="100"
               />

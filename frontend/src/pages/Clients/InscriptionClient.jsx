@@ -31,7 +31,7 @@ const ClientInscription = () => {
         }
       }
 
-      const res = await axios.post('http://localhost:3001/api/clients/register', form, {
+      const res = await axios.post('https://clientapi-u3uk.onrender.com/api/clients/register', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

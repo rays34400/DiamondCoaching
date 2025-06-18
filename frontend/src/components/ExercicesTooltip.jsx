@@ -8,7 +8,7 @@ const ExercicesTooltip = ({ programmeId, x, y }) => {
   useEffect(() => {
     const fetchExercices = async () => {
       try {
-        const res = await axios.get(`http://localhost:3004/api/exercices/programme/${programmeId}`);
+        const res = await axios.get(`https://exerciceapi.onrender.com/api/exercices/programme/${programmeId}`);
         setExercices(res.data);
       } catch (error) {
         console.error("Erreur lors du chargement des exercices :", error);

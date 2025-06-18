@@ -58,7 +58,7 @@ const InscriptionEntraineur = () => {
         }
       }
 
-      await axios.post('http://localhost:3002/api/entraineurs/register', form, {
+      await axios.post('https://entraineurapi.onrender.com/api/entraineurs/register', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

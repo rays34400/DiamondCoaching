@@ -33,7 +33,7 @@ const AjouterExerciceModal = ({ programmeId, onClose, onSuccess }) => {
     if (form.video) formData.append('video', form.video);
 
     try {
-      await axios.post('http://localhost:3004/api/exercices/add', formData, {
+      await axios.post('https://exerciceapi.onrender.com/api/exercices/add', formData, {
         headers: {
           Authorization: `Bearer ${user.token}`, //  Ajouter le token
         },

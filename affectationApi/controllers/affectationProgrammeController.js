@@ -31,7 +31,7 @@ exports.getProgrammesPourClientComplet = async (req, res) => {
     const programmes = await Promise.all(
       affectations.map(async (a) => {
         try {
-          const response = await axios.get(`http://localhost:3003/api/programmes/${a.idProgramme}`);
+          const response = await axios.get(`https://programmeapi.onrender.com/api/programmes/${a.idProgramme}`);
           return response.data;
         } catch (err) {
           console.error(`❌ Erreur récupération programme ${a.programmeId}`, err.message);

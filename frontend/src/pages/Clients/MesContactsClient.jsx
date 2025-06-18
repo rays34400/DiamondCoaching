@@ -16,7 +16,7 @@ useEffect(() => {
   const fetchKey = async () => {
     try {
       if (!user?.token) return;
-      const keyRes = await axios.get('http://localhost:3001/api/clients/key', {
+      const keyRes = await axios.get('https://clientapi-u3uk.onrender.com/api/clients/key', {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setKeyClient(keyRes.data.keyClient);
@@ -30,13 +30,13 @@ useEffect(() => {
   useEffect(() => {
     const fetchEntraineurs = async () => {
       try {
-        const res = await axios.get(`http://localhost:3007/api/demandes/entraineursContact/${keyClient}`);
+        const res = await axios.get(`https://affectationapi.onrender.com/api/demandes/entraineursContact/${keyClient}`);
         const demandes = res.data;
 
         const entraineurDetails = await Promise.all(
           demandes.map(async (d) => {
             try {
-              const r = await axios.get(`http://localhost:3002/api/entraineurs/bykey/${d.keyEntraineur}`, {
+              const r = await axios.get(`https://entraineurapi.onrender.com/api/entraineurs/bykey/${d.keyEntraineur}`, {
                 headers: {
                   Authorization: `Bearer ${user.token}`
                 }
@@ -61,7 +61,7 @@ useEffect(() => {
 
   const fetchRendezVous = async (keyEntraineur) => {
     try {
-      const res = await axios.get(`http://localhost:3008/api/rendezvous/entraineur/${keyEntraineur}`);
+      const res = await axios.get(`https://rendezvousapi.onrender.com/api/rendezvous/entraineur/${keyEntraineur}`);
       setRdvs(res.data);
     } catch (err) {
       console.error("Erreur récupération rdvs", err);
@@ -94,7 +94,7 @@ useEffect(() => {
 
   const handleReserver = async (dateStr, heure) => {
     try {
-      await axios.post('http://localhost:3008/api/rendezvous/add', {
+      await axios.post('https://rendezvousapi.onrender.com/api/rendezvous/add', {
         keyClient,
         keyEntraineur: selectedEntraineur.keyEntraineur,
         date: dateStr,
@@ -118,7 +118,7 @@ useEffect(() => {
           {entraineurs.map(entraineur => (
             <div key={entraineur._id} className="contact-card">
               <img
-                src={`http://localhost:3002/uploads/${entraineur.photoProfile || 'default.png'}`}
+                src={`https://entraineurapi.onrender.com/uploads/${entraineur.photoProfile || 'default.png'}`}
                 alt="profil"
                 width="100"
               />
