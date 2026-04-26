@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../../styles/client/client-inscription.css';
+
 const ClientInscription = () => {
   const [formData, setFormData] = useState({
     nom: '',
@@ -46,46 +47,56 @@ const ClientInscription = () => {
   };
 
   return (
-    <div className="client-inscription-container">
-      <h2 className="title">Inscription Client</h2>
-      <form onSubmit={handleSubmit} className="inscription-form" encType="multipart/form-data">
-        <div className="form-group">
-          <label>Nom</label>
-          <input type="text" name="nom" onChange={handleChange} required />
-        </div>
+    <div className="client-inscription-page">
+      <div className="client-inscription-card">
+        <h2>Inscription Client</h2>
+        <p className="inscription-subtitle">
+          Créez votre compte pour accéder à votre espace coaching.
+        </p>
 
-        <div className="form-group">
-          <label>Prénom</label>
-          <input type="text" name="prenom" onChange={handleChange} required />
-        </div>
+        <form onSubmit={handleSubmit} className="inscription-form" encType="multipart/form-data">
+          <div className="form-row">
+            <div className="form-group">
+              <label>Nom</label>
+              <input type="text" name="nom" placeholder="Votre nom" onChange={handleChange} required />
+            </div>
 
-        <div className="form-group">
-          <label>Email</label>
-          <input type="email" name="email" onChange={handleChange} required />
-        </div>
+            <div className="form-group">
+              <label>Prénom</label>
+              <input type="text" name="prenom" placeholder="Votre prénom" onChange={handleChange} required />
+            </div>
+          </div>
 
-        <div className="form-group">
-          <label>Mot de passe</label>
-          <input type="password" name="password" onChange={handleChange} required />
-        </div>
+          <div className="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Votre email" onChange={handleChange} required />
+          </div>
 
-        <div className="form-group">
-          <label>Adresse</label>
-          <input type="text" name="adresse" onChange={handleChange} required />
-        </div>
+          <div className="form-group">
+            <label>Mot de passe</label>
+            <input type="password" name="password" placeholder="Votre mot de passe" onChange={handleChange} required />
+          </div>
 
-        <div className="form-group">
-          <label>Téléphone</label>
-          <input type="text" name="telephone" onChange={handleChange} required />
-        </div>
+          <div className="form-group">
+            <label>Adresse</label>
+            <input type="text" name="adresse" placeholder="Votre adresse" onChange={handleChange} required />
+          </div>
 
-        <div className="form-group">
-          <label>Photo de profil (optionnelle)</label>
-          <input type="file" name="photoProfile" accept="image/*" onChange={handleChange} />
-        </div>
+          <div className="form-group">
+            <label>Téléphone</label>
+            <input type="text" name="telephone" placeholder="Votre téléphone" onChange={handleChange} required />
+          </div>
 
-        <button type="submit" className="submit-button">S'inscrire</button>
-      </form>
+          <div className="form-group">
+            <label>Photo de profil <span>(optionnelle)</span></label>
+            <input type="file" name="photoProfile" accept="image/*" onChange={handleChange} />
+          </div>
+
+          <button type="submit" className="submit-button">
+            S'inscrire
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
