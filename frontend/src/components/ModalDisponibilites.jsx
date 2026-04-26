@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+
 const heuresDisponibles = [
-  "08:00", "09:30", "11:00", "12:30", "14:00", "15:30", "17:00", "18:30", "20:00"
+  '08:00', '09:30', '11:00', '12:30', '14:00', '15:30', '17:00', '18:30', '20:00'
 ];
 
 const ModalDisponibilites = ({ entraineur, setEntraineur, onClose }) => {
@@ -16,6 +17,7 @@ const ModalDisponibilites = ({ entraineur, setEntraineur, onClose }) => {
 
     const updated = disponibilites.filter(d => d.jour !== selectedJour);
     updated.push({ jour: selectedJour, heures: selectedHeures });
+
     setDisponibilites(updated);
     setSelectedJour('');
     setSelectedHeures([]);
@@ -28,9 +30,13 @@ const ModalDisponibilites = ({ entraineur, setEntraineur, onClose }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.put(`https://entraineurapi.onrender.com/api/entraineurs/disponibilites/${entraineur.keyEntraineur}`, {
-        disponibilites: JSON.stringify(disponibilites)
-      });
+      const response = await axios.put(
+        `https://entraineurapi.onrender.com/api/entraineurs/disponibilites/${entraineur.keyEntraineur}`,
+        {
+          disponibilites: JSON.stringify(disponibilites)
+        }
+      );
+
       alert("Disponibilités mises à jour avec succès.");
       setEntraineur({ ...entraineur, disponibilites: response.data.disponibilites });
       onClose();
@@ -46,29 +52,34 @@ const ModalDisponibilites = ({ entraineur, setEntraineur, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content large-modal">
         <h3>Modifier mes disponibilités</h3>
 
         <div className="form-group">
           <label>Jour</label>
           <select value={selectedJour} onChange={(e) => setSelectedJour(e.target.value)}>
             <option value="">Choisir un jour</option>
-            {joursDisponibles.map(j => <option key={j} value={j}>{j}</option>)}
+            {joursDisponibles.map(j => (
+              <option key={j} value={j}>{j}</option>
+            ))}
           </select>
         </div>
 
         <div className="form-group">
           <label>Heures disponibles</label>
+
           <div className="checkbox-group">
             {heuresDisponibles.map(h => (
-              <label key={h}>
+              <label key={h} className="checkbox-item">
                 <input
                   type="checkbox"
                   value={h}
                   checked={selectedHeures.includes(h)}
                   onChange={(e) => {
                     const checked = e.target.checked;
-                    setSelectedHeures(prev => checked ? [...prev, h] : prev.filter(x => x !== h));
+                    setSelectedHeures(prev =>
+                      checked ? [...prev, h] : prev.filter(x => x !== h)
+                    );
                   }}
                 />
                 {h}
@@ -81,16 +92,30 @@ const ModalDisponibilites = ({ entraineur, setEntraineur, onClose }) => {
           Ajouter / Modifier cette disponibilité
         </button>
 
-        <div className="form-group">
-          <h4>Disponibilités actuelles :</h4>
-          <ul>
-            {disponibilites.map((d, i) => (
-              <li key={i}>
-                {d.jour} : {d.heures.join(', ')}
-                <button onClick={() => handleDeleteJour(d.jour)} style={{ marginLeft: '10px', color: 'red' }}>❌</button>
-              </li>
-            ))}
-          </ul>
+        <div className="current-dispos">
+          <h4>Disponibilités actuelles</h4>
+
+          {disponibilites.length === 0 ? (
+            <p>Aucune disponibilité enregistrée.</p>
+          ) : (
+            <ul>
+              {disponibilites.map((d, i) => (
+                <li key={i}>
+                  <span>
+                    <strong>{d.jour}</strong> : {d.heures.join(', ')}
+                  </span>
+
+                  <button
+                    type="button"
+                    className="remove-dispo-button"
+                    onClick={() => handleDeleteJour(d.jour)}
+                  >
+                    Supprimer
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="modal-actions">

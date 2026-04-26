@@ -1,104 +1,133 @@
-/* fichier: mes-contacts-entraineur.css */
-
-/* Conteneur principal */
-.mes-contacts-entraineur-container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, #000000, #001f3f);
-  min-height: 100vh;
-  color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Titre */
+.mes-contacts-entraineur-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mes-contacts-entraineur-container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  background: rgba(20, 28, 48, 0.58);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.18);
+}
+
 .mes-contacts-entraineur-container h2 {
   text-align: center;
   color: #00ccff;
   font-size: 2rem;
-  margin-bottom: 30px;
+  margin: 0 0 10px;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.8s ease-out;
 }
 
-/* Grille de cartes */
+.contacts-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.98rem;
+  margin: 0 auto 28px;
+  max-width: 650px;
+}
+
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
 }
 
-/* Carte client */
 .contact-card {
-  background: rgba(20, 28, 48, 0.8);
-  padding: 20px;
-  border-radius: 16px;
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  padding: 24px 18px;
+  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(0, 204, 255, 0.15);
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.8s ease-out;
 }
 
 .contact-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 30px rgba(0, 204, 255, 0.4);
+  box-shadow: 0 0 28px rgba(0, 204, 255, 0.32);
 }
 
-/* Photo ronde + encadrement */
 .contact-card img {
-  width: 90px;
-  height: 90px;
+  width: 105px;
+  height: 105px;
   border-radius: 50%;
-  border: 3px solid rgba(0, 204, 255, 0.6);
-  margin-bottom: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: cover;
+  border: 3px solid rgba(0, 204, 255, 0.65);
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.contact-card img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(0, 230, 255, 0.5);
-}
-
-/* Nom et infos */
 .contact-card h4 {
   font-size: 1.2rem;
+  margin: 8px 0 12px;
   color: #00e6ff;
-  margin: 8px 0;
 }
 
 .contact-card p {
-  margin: 4px 0;
-  color: #d0d0d0;
-  font-size: 0.9rem;
+  margin: 6px 0;
+  font-size: 0.94rem;
+  color: #d0d8e2;
+  line-height: 1.45;
 }
 
-/* Aucun client */
-.mes-contacts-entraineur-container p {
+.contact-card strong {
+  color: #ffffff;
+}
+
+.empty-state {
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 28px 22px;
   text-align: center;
-  margin-top: 20px;
-  font-size: 1rem;
-  color: #d0d0d0;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
 }
 
-/* Animations clés */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
 }
 
-/* Adaptation mobile */
-@media (max-width: 480px) {
-  .mes-contacts-entraineur-container {
-    padding: 20px 10px;
+@media (max-width: 600px) {
+  .mes-contacts-entraineur-page {
+    padding: 30px 14px;
   }
+
+  .mes-contacts-entraineur-container {
+    padding: 28px 16px;
+  }
+
+  .mes-contacts-entraineur-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
   .contact-card img {
-    width: 80px;
-    height: 80px;
+    width: 92px;
+    height: 92px;
   }
 }

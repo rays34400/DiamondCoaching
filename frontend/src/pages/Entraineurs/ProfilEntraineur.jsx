@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import PhotoProfilEntraineur from '../../components/PhotoProfilEntraineur';
 import InfosProfilEntraineur from '../../components/InfosProfilEntraineur';
 import FormEditProfilEntraineur from '../../components/FormEditProfilEntraineur';
@@ -41,6 +40,7 @@ const ProfilEntraineur = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+
     try {
       await axios.put(
         `https://entraineurapi.onrender.com/api/entraineurs/update/${user.id}`,
@@ -58,6 +58,7 @@ const ProfilEntraineur = () => {
           },
         }
       );
+
       alert("Profil mis à jour !");
       setShowEditForm(false);
     } catch (error) {
@@ -67,7 +68,10 @@ const ProfilEntraineur = () => {
   };
 
   const handleDelete = async () => {
-    const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
+    const confirmation = window.confirm(
+      "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible."
+    );
+
     if (!confirmation) return;
 
     try {
@@ -76,6 +80,7 @@ const ProfilEntraineur = () => {
           Authorization: `Bearer ${user.token}`,
         },
       });
+
       logout();
       alert("Compte supprimé avec succès.");
       navigate('/');
@@ -103,6 +108,7 @@ const ProfilEntraineur = () => {
           },
         }
       );
+
       setEntraineur(res.data.entraineur);
       alert("Photo mise à jour !");
     } catch (error) {
@@ -111,62 +117,91 @@ const ProfilEntraineur = () => {
     }
   };
 
-  if (!entraineur) return <p>Chargement du profil...</p>;
+  if (!entraineur) {
+    return (
+      <div className="entraineur-profil-page">
+        <div className="entraineur-profil-container">
+          <div className="empty-state">
+            <h3>Chargement du profil...</h3>
+            <p>Récupération de vos informations.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="entraineur-profil-container">
-      <h2>Mon Profil Entraîneur</h2>
+    <div className="entraineur-profil-page">
+      <div className="entraineur-profil-container">
+        <h2>Mon profil entraîneur</h2>
 
-      <PhotoProfilEntraineur photoProfile={entraineur.photoProfile} onChangePhoto={handlePhotoChange} />
+        <p className="profil-subtitle">
+          Gérez vos informations, vos disponibilités et vos rendez-vous.
+        </p>
 
-      <InfosProfilEntraineur entraineur={entraineur} />
-
-      <div className="profil-actions">
-        <button className="edit-button" onClick={() => setShowEditForm(true)}>
-          Modifier mon profil
-        </button>
-        <button className="edit-button" onClick={() => setShowDisponibilitesModal(true)}>
-          Modifier mes disponibilités
-        </button>
-        <button className="delete-button" onClick={handleDelete}>
-          Supprimer mon compte
-        </button>
-        <Link
-          to="/entraineur/rendezvous"
-          state={{ keyEntraineur: entraineur.keyEntraineur }}
-        >
-          <button className="view-rdv-button">Voir mes rendez-vous</button>
-        </Link>
-      </div>
-
-      {showEditForm && (
-        <FormEditProfilEntraineur
-          entraineur={entraineur}
-          setEntraineur={setEntraineur}
-          handleUpdate={handleUpdate}
-          setShowEditForm={setShowEditForm}
+        <PhotoProfilEntraineur
+          photoProfile={entraineur.photoProfile}
+          onChangePhoto={handlePhotoChange}
         />
-      )}
 
-      {showDisponibilitesModal && (
-        <ModalDisponibilites
-          entraineur={entraineur}
-          setEntraineur={setEntraineur}
-          onClose={() => setShowDisponibilitesModal(false)}
-        />
-      )}
+        <InfosProfilEntraineur entraineur={entraineur} />
 
-      <div className="disponibilites-section">
-        <h3>Mes disponibilités</h3>
-        <ul>
+        <div className="profil-actions">
+          <button className="edit-button" onClick={() => setShowEditForm(true)}>
+            Modifier mon profil
+          </button>
+
+          <button className="edit-button" onClick={() => setShowDisponibilitesModal(true)}>
+            Modifier mes disponibilités
+          </button>
+
+          <Link
+            to="/entraineur/rendezvous"
+            state={{ keyEntraineur: entraineur.keyEntraineur }}
+          >
+            <button className="view-rdv-button">Voir mes rendez-vous</button>
+          </Link>
+
+          <button className="delete-button" onClick={handleDelete}>
+            Supprimer mon compte
+          </button>
+        </div>
+
+        {showEditForm && (
+          <FormEditProfilEntraineur
+            entraineur={entraineur}
+            setEntraineur={setEntraineur}
+            handleUpdate={handleUpdate}
+            setShowEditForm={setShowEditForm}
+          />
+        )}
+
+        {showDisponibilitesModal && (
+          <ModalDisponibilites
+            entraineur={entraineur}
+            setEntraineur={setEntraineur}
+            onClose={() => setShowDisponibilitesModal(false)}
+          />
+        )}
+
+        <div className="disponibilites-section">
+          <h3>Mes disponibilités</h3>
+
           {entraineur.disponibilites && entraineur.disponibilites.length > 0 ? (
-            entraineur.disponibilites.map((d, index) => (
-              <li key={index}>{d.jour} : {d.heures.join(', ')}</li>
-            ))
+            <ul>
+              {entraineur.disponibilites.map((d, index) => (
+                <li key={index}>
+                  <strong>{d.jour}</strong> : {d.heures.join(', ')}
+                </li>
+              ))}
+            </ul>
           ) : (
-            <li>Aucune disponibilité enregistrée.</li>
+            <div className="empty-state small">
+              <h3>Aucune disponibilité</h3>
+              <p>Ajoutez vos disponibilités pour permettre aux clients de réserver.</p>
+            </div>
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );
