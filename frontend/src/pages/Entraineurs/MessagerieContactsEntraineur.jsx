@@ -21,6 +21,7 @@ const MessagerieContactsEntraineur = () => {
         console.error("Erreur récupération keyEntraineur :", err);
       }
     };
+
     if (user?.id && user?.token) fetchKey();
   }, [user]);
 
@@ -52,39 +53,57 @@ const MessagerieContactsEntraineur = () => {
   }, [keyEntraineur]);
 
   return (
-    <div>
-      <h2>Messagerie avec mes clients</h2>
-      {clients.length === 0 ? (
-        <p>Aucun client affecté.</p>
-      ) : (
-        <div className="contact-grid">
-          {clients.map(client => (
-            <div key={client._id} className="contact-card">
-              <img
-                src={`https://clientapi-u3uk.onrender.com/uploads/${client.photoProfile || 'default.png'}`}
-                alt="profil"
-                width="100"
-              />
-              <h4>{client.nom} {client.prenom}</h4>
-              <p>Email : {client.email}</p>
-              <p>Sexe : {client.sexe}</p>
-              <p>Adresse : {client.adresse}</p>
-              <button onClick={() => setSelectedClientKey(client.keyClient)}>
-                ouvrir Conversation
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="messagerie-entraineur-page">
+      <div className="messagerie-entraineur-container">
+        <h2>Messagerie avec mes clients</h2>
 
-      {selectedClientKey && (
-  <div className="messagerie-section">
-    <button onClick={() => setSelectedClientKey(null)} className="close-btn">
-      Fermer la conversation
-    </button>
-    <MessagerieEntraineur keyClient={selectedClientKey} />
-  </div>
-)}
+        <p className="messagerie-subtitle">
+          Sélectionnez un client pour ouvrir une conversation.
+        </p>
+
+        {clients.length === 0 ? (
+          <div className="empty-state">
+            <h3>Aucun client affecté</h3>
+            <p>Vos conversations apparaîtront ici lorsque vous aurez des clients affectés.</p>
+          </div>
+        ) : (
+          <div className="contact-grid">
+            {clients.map((client) => (
+              <div key={client._id} className="contact-card">
+                <img
+                  src={`https://clientapi-u3uk.onrender.com/uploads/${client.photoProfile || 'default.png'}`}
+                  alt={`${client.nom} ${client.prenom}`}
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://via.placeholder.com/120x120?text=Client';
+                  }}
+                />
+
+                <h4>{client.nom} {client.prenom}</h4>
+
+                <p><strong>Email :</strong> {client.email || 'Non renseigné'}</p>
+                <p><strong>Téléphone :</strong> {client.telephone || 'Non renseigné'}</p>
+
+                <button onClick={() => setSelectedClientKey(client.keyClient)}>
+                  Ouvrir conversation
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {selectedClientKey && (
+          <div className="messagerie-section">
+            <button
+              onClick={() => setSelectedClientKey(null)}
+              className="close-btn"
+            >
+              Fermer la conversation
+            </button>
+
+            <MessagerieEntraineur keyClient={selectedClientKey} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
