@@ -1,79 +1,154 @@
-/* Container principal du formulaire */
-.profil-container {
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, #000, #001f3f);
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0, 204, 255, 0.2);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Titre du formulaire */
+.modifier-profil-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profil-container {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 34px 28px;
+  background: rgba(20, 28, 48, 0.88);
+  border: 1px solid rgba(0, 204, 255, 0.18);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.25);
+}
+
 .form-title {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 30px;
+  margin: 0 0 10px;
   color: #00ccff;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.8s ease-out;
 }
 
-/* Style général du formulaire */
+.form-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.95rem;
+  margin: 0 0 28px;
+}
+
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  width: 100%;
 }
 
-/* Champs de saisie et selects */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #cceeff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 .form-input {
-  padding: 12px 16px;
-  background: rgba(255,255,255,0.05);
-  border: 2px solid rgba(0,204,255,0.4);
+  width: 100%;
+  padding: 13px 15px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(0, 204, 255, 0.25);
   border-radius: 12px;
-  color: #eef;
+  color: #ffffff;
   font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #00e6ff;
-  box-shadow: 0 0 8px rgba(0,230,255,0.4);
+  border-color: #00ccff;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.45);
 }
 
-/* Label du champ */
-.form label {
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-  color: #ccc;
-}
-
-/* Bouton d'enregistrement */
-.form-button {
-  padding: 14px;
-  margin-top: 12px;
-  background: #00ccff;
-  color: #000;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 20px;
+.form-input[type="file"] {
   cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s;
-  box-shadow: 0 0 12px rgba(0,204,255,0.3);
+  padding: 11px 14px;
+}
+
+.form-input option {
+  color: #000000;
+}
+
+.form-button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 20px;
+  background: transparent;
+  border: 2px solid #00ccff;
+  color: #00ccff;
+  text-transform: uppercase;
+  font-size: 0.98rem;
+  font-weight: bold;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.8);
 }
 
 .form-button:hover {
-  background: #00e6ff;
-  box-shadow: 0 0 20px rgba(0,204,255,0.6);
+  background: #00ccff;
+  color: #000000;
   transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ccff;
 }
 
-/* Animations */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px);}
-  to   { opacity: 1; transform: translateY(0);}
+.empty-state {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 28px 20px;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 18px;
+}
+
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .modifier-profil-page {
+    padding: 30px 14px;
+  }
+
+  .profil-container {
+    padding: 28px 20px;
+  }
+
+  .form-title {
+    font-size: 1.7rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }

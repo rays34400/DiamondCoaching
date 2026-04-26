@@ -24,7 +24,7 @@ function ModifierProfilClient() {
         .then(res => {
           const data = res.data;
           if (data.dateNaissance) {
-            data.dateNaissance = data.dateNaissance.split('T')[0]; // ✅ Corrige le format
+            data.dateNaissance = data.dateNaissance.split('T')[0];
           }
           setForm(data);
         })
@@ -53,6 +53,7 @@ function ModifierProfilClient() {
       Object.entries(form).forEach(([key, value]) => {
         formData.append(key, value);
       });
+
       if (photo) {
         formData.append('photo', photo);
       }
@@ -73,26 +74,99 @@ function ModifierProfilClient() {
   };
 
   return (
-    <div className="profil-container">
-      <h2 className="form-title">Modifier Profil Client</h2>
-      {user ? (
-        <form onSubmit={handleSubmit} className="form" encType="multipart/form-data">
-          <input name="nom" value={form.nom} onChange={handleChange} className="form-input" />
-          <input name="prenom" value={form.prenom} onChange={handleChange} className="form-input" />
-          <input name="email" value={form.email} onChange={handleChange} className="form-input" />
-          <select name="sexe" value={form.sexe} onChange={handleChange} className="form-input">
-            <option value="">Sexe</option>
-            <option value="Homme">Homme</option>
-            <option value="Femme">Femme</option>
-          </select>
-          <input type="date" name="dateNaissance" value={form.dateNaissance} onChange={handleChange} className="form-input" />
-          <label>Photo :</label>
-          <input type="file" accept="image/*" onChange={handleFileChange} className="form-input" />
-          <button type="submit" className="form-button">Enregistrer</button>
-        </form>
-      ) : (
-        <p>Chargement...</p>
-      )}
+    <div className="modifier-profil-page">
+      <div className="profil-container">
+        <h2 className="form-title">Modifier mon profil</h2>
+
+        <p className="form-subtitle">
+          Mettez à jour vos informations personnelles.
+        </p>
+
+        {user ? (
+          <form onSubmit={handleSubmit} className="form" encType="multipart/form-data">
+            <div className="form-row">
+              <div className="form-group">
+                <label>Nom</label>
+                <input
+                  name="nom"
+                  value={form.nom}
+                  onChange={handleChange}
+                  className="form-input"
+                  placeholder="Votre nom"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Prénom</label>
+                <input
+                  name="prenom"
+                  value={form.prenom}
+                  onChange={handleChange}
+                  className="form-input"
+                  placeholder="Votre prénom"
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="Votre email"
+              />
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>Sexe</label>
+                <select
+                  name="sexe"
+                  value={form.sexe}
+                  onChange={handleChange}
+                  className="form-input"
+                >
+                  <option value="">Sélectionner</option>
+                  <option value="Homme">Homme</option>
+                  <option value="Femme">Femme</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Date de naissance</label>
+                <input
+                  type="date"
+                  name="dateNaissance"
+                  value={form.dateNaissance}
+                  onChange={handleChange}
+                  className="form-input"
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Photo</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="form-input"
+              />
+            </div>
+
+            <button type="submit" className="form-button">
+              Enregistrer
+            </button>
+          </form>
+        ) : (
+          <div className="empty-state">
+            <h3>Chargement...</h3>
+            <p>Récupération de vos informations.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
