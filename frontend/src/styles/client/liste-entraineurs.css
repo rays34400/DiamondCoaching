@@ -1,93 +1,116 @@
-/* 1️⃣ Fond uniforme comme l'accueil */
-body, html {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
   margin: 0;
   padding: 0;
+}
+
+.liste-entraineurs-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
   background: linear-gradient(to bottom, #000000, #001f3f);
-  width: 100%;
-  height: 100%;
+  color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.liste-entraineurs {
+.liste-entraineurs-container {
   width: 100%;
-  min-height: 100vh;
-  padding: 60px 20px;
-  box-sizing: border-box;
-  color: #ffffff;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  background: rgba(20, 28, 48, 0.55);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.18);
+  animation: fadeInUp 0.7s ease-out;
 }
 
-/* 2️⃣ Titre stylé central */
-.liste-entraineurs h2 {
-  font-size: 2.6rem;
+.liste-entraineurs-container h2 {
+  font-size: 2rem;
   text-align: center;
   color: #00ccff;
-  margin-bottom: 40px;
-  text-shadow: 0 0 12px #00ccff;
-  animation: fadeInDown 0.8s ease-out;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px #00ccff;
 }
 
-/* 3️⃣ Message succès/erreur */
-.liste-entraineurs p.message {
+.liste-entraineurs-subtitle {
   text-align: center;
-  margin-bottom: 20px;
-  color: #00ff99;
-  font-size: 1.1rem;
+  color: #d0d8e2;
+  font-size: 0.98rem;
+  margin: 0 auto 28px;
+  max-width: 650px;
 }
 
-/* 4️⃣ Grille souple */
+.message {
+  max-width: 520px;
+  margin: 0 auto 24px;
+  padding: 12px 16px;
+  text-align: center;
+  color: #001018;
+  background: #00ccff;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow: 0 0 14px rgba(0, 204, 255, 0.28);
+}
+
 .entraineur-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  padding: 0 10px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
 }
 
-/* 5️⃣ Cartes élégantes */
 .entraineur-card {
-  background: rgba(20, 28, 48, 0.8);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 204, 255, 0.15);
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.8s ease-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 24px 18px;
+  text-align: center;
 }
 
 .entraineur-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 30px rgba(0, 204, 255, 0.4);
+  box-shadow: 0 0 28px rgba(0, 204, 255, 0.32);
 }
 
-/* 6️⃣ Photo ronde */
 .entraineur-photo {
-  width: 100px;
-  height: 100px;
+  width: 105px;
+  height: 105px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(0, 204, 255, 0.6);
+  border: 3px solid rgba(0, 204, 255, 0.65);
   margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* 7️⃣ Infos textuelles */
 .entraineur-card h4 {
   font-size: 1.2rem;
-  color: #00ccff;
-  margin: 8px 0;
+  color: #00e6ff;
+  margin: 8px 0 12px;
 }
 
 .entraineur-card p {
-  font-size: 0.95rem;
-  color: #d0d0d0;
-  margin: 4px 0;
-  text-align: center;
+  font-size: 0.94rem;
+  color: #d0d8e2;
+  margin: 5px 0;
+  line-height: 1.45;
 }
 
-/* 8️⃣ Bouton moderne */
+.entraineur-card strong {
+  color: #ffffff;
+}
+
 .entraineur-card button {
-  margin-top: 16px;
+  margin-top: 18px;
   padding: 10px 24px;
   background: transparent;
   border: 2px solid #00ccff;
@@ -97,34 +120,70 @@ body, html {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 8px #00ccff;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.75);
 }
 
 .entraineur-card button:hover {
   background: #00ccff;
-  color: #000;
-  transform: scale(1.03);
-  box-shadow: 0 0 24px #00ccff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ccff;
 }
 
-/* 9️⃣ Structure responsive */
+.empty-state {
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 28px 22px;
+  text-align: center;
+  background: rgba(20, 28, 48, 0.86);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
+}
+
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
+  font-size: 0.96rem;
+}
+
 @media (max-width: 600px) {
-  .entraineur-card {
-    padding: 16px;
+  .liste-entraineurs-page {
+    padding: 30px 14px;
   }
+
+  .liste-entraineurs-container {
+    padding: 28px 16px;
+  }
+
+  .liste-entraineurs-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .entraineur-grid {
+    grid-template-columns: 1fr;
+  }
+
   .entraineur-photo {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 12px;
+    width: 92px;
+    height: 92px;
   }
 }
 
-/* 🔟 Animations */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
