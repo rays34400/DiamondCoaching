@@ -7,6 +7,7 @@ import '../../styles/entraineur/ajouter-programme.css';
 const AjouterProgramme = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     nom: '',
     description: '',
@@ -40,46 +41,65 @@ const AjouterProgramme = () => {
   };
 
   return (
-    <div className="ajouter-programme-container">
-      <h2>Créer un Programme</h2>
-      <form className="programme-form" onSubmit={handleSubmit}>
-        <label>Nom du programme :</label>
-        <input
-          type="text"
-          name="nom"
-          value={form.nom}
-          onChange={handleChange}
-          required
-        />
+    <div className="ajouter-programme-page">
+      <div className="ajouter-programme-container">
+        <h2>Créer un programme</h2>
 
-        <label>Niveau :</label>
-        <input
-          type="text"
-          name="niveau"
-          value={form.niveau}
-          onChange={handleChange}
-          required
-        />
+        <p className="programme-subtitle">
+          Ajoutez un nouveau programme que vous pourrez ensuite compléter avec des exercices.
+        </p>
 
-        <label>Objectif :</label>
-        <input
-          type="text"
-          name="objectif"
-          value={form.objectif}
-          onChange={handleChange}
-          required
-        />
+        <form className="programme-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Nom du programme</label>
+            <input
+              type="text"
+              name="nom"
+              value={form.nom}
+              onChange={handleChange}
+              placeholder="Ex : Programme perte de poids"
+              required
+            />
+          </div>
 
-        <label>Description :</label>
-        <textarea
-          name="description"
-          value={form.description}
-          onChange={handleChange}
-          required
-        ></textarea>
+          <div className="form-group">
+            <label>Niveau</label>
+            <input
+              type="text"
+              name="niveau"
+              value={form.niveau}
+              onChange={handleChange}
+              placeholder="Ex : Débutant, intermédiaire..."
+              required
+            />
+          </div>
 
-        <button type="submit">Créer</button>
-      </form>
+          <div className="form-group">
+            <label>Objectif</label>
+            <input
+              type="text"
+              name="objectif"
+              value={form.objectif}
+              onChange={handleChange}
+              placeholder="Ex : Force, endurance, perte de poids..."
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Description</label>
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Décrivez le programme..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit">Créer le programme</button>
+        </form>
+      </div>
     </div>
   );
 };
