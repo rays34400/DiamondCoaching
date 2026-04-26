@@ -8,15 +8,13 @@
   min-height: calc(100vh - 70px);
   padding: 40px 20px;
   background: linear-gradient(to bottom, #000000, #001f3f);
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .client-profil-container {
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: 34px 24px;
+  padding: 28px 24px;
   background: rgba(20, 28, 48, 0.58);
   border: 1px solid rgba(0, 204, 255, 0.14);
   border-radius: 22px;
@@ -153,7 +151,7 @@
 }
 
 .profil-rdv-wrapper {
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 /* Pour éviter que la page RDV imbriquée recrée un gros fond à l’intérieur du profil */
@@ -166,12 +164,11 @@
 
 .profil-rdv-wrapper .liste-rdv-container {
   max-width: 100%;
-  padding: 24px 0 0;
+  padding: 12px 0 0;
   background: transparent;
   border: none;
   box-shadow: none;
 }
-
 .profil-rdv-wrapper .liste-rdv-container h2 {
   font-size: 1.45rem;
   margin-bottom: 18px;
