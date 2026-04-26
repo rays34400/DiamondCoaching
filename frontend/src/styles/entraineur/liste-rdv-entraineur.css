@@ -1,129 +1,172 @@
-/* === liste-rdv-entraineur.css === */
-
-/* Container principal */
-.liste-rdv-entraineur {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px 20px;
-  background: linear-gradient(to bottom, #000000, #001f3f);
-  color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Titre */
-.liste-rdv-entraineur h3 {
+.rdv-entraineur-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.liste-rdv-entraineur {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  background: rgba(20, 28, 48, 0.58);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.18);
+}
+
+.liste-rdv-entraineur h2 {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin: 0 0 10px;
   color: #00ccff;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.8s ease-out;
 }
 
-/* Liste des rendez-vous */
-.liste-rdv-entraineur ul {
-  list-style: none;
-  padding: 0;
+.rdv-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.98rem;
+  margin: 0 auto 28px;
+  max-width: 650px;
 }
 
-/* Item RDV */
-.liste-rdv-entraineur li {
-  position: relative;
-  background: rgba(20, 28, 48, 0.85);
-  padding: 16px 20px;
-  margin-bottom: 16px;
-  border-left: 4px solid rgba(0, 204, 255, 0.6);
-  border-radius: 12px;
+.rdv-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.rdv-card {
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-left: 4px solid rgba(0, 204, 255, 0.65);
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.8s ease-out;
 }
 
-.liste-rdv-entraineur li:hover {
+.rdv-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+  box-shadow: 0 0 26px rgba(0, 204, 255, 0.3);
 }
 
-/* Texte RDV */
-.liste-rdv-entraineur li strong,
-.liste-rdv-entraineur li em,
-.liste-rdv-entraineur li p {
-  display: block;
-  margin-bottom: 6px;
-  color: #d0d0d0;
+.rdv-date {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-/* Zone des boutons */
+.rdv-client,
+.rdv-status {
+  margin: 6px 0;
+  color: #d0d8e2;
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+
+.rdv-card strong {
+  color: #ffffff;
+}
+
+.rdv-status span {
+  color: #00ccff;
+  font-weight: 700;
+}
+
 .rdv-actions {
-  margin-top: 10px;
+  margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
-/* Boutons d'action */
 .rdv-actions button {
-  padding: 6px 12px;
+  padding: 9px 14px;
   font-size: 0.9rem;
-  border: none;
-  border-radius: 12px;
+  font-weight: bold;
+  border-radius: 14px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-/* Style spécifique pour chaque action */
-.rdv-actions button:nth-child(1) {
-  background: #00ccff;
-  color: #000;
-}
-.rdv-actions button:nth-child(1):hover {
-  background: #00e6ff;
-}
-
-.rdv-actions button:nth-child(2) {
-  background: #00ccff;
-  color: #000;
-}
-.rdv-actions button:nth-child(2):hover {
-  background: #00e6ff;
-}
-
-.rdv-actions button:nth-child(3) {
+.accept-btn,
+.done-btn {
   background: transparent;
-  color: #ff4d4d;
+  border: 2px solid #00ccff;
+  color: #00ccff;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.45);
+}
+
+.accept-btn:hover,
+.done-btn:hover {
+  background: #00ccff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px #00ccff;
+}
+
+.delete-btn {
+  background: transparent;
   border: 2px solid #ff4d4d;
-}
-.rdv-actions button:nth-child(3):hover {
-  background: rgba(255, 77, 77, 0.2);
+  color: #ff4d4d;
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.25);
 }
 
-/* Message si aucun rdv */
-.liste-rdv-entraineur p {
+.delete-btn:hover {
+  background: #ff4d4d;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+.empty-state {
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 28px 22px;
   text-align: center;
-  font-size: 1rem;
-  color: #d0d0d0;
-  margin-top: 20px;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
 }
 
-/* Animations clés */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
 }
 
-/* Responsive pour écrans mobiles */
-@media (max-width: 480px) {
-  .liste-rdv-entraineur {
-    padding: 20px 10px;
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .rdv-entraineur-page {
+    padding: 30px 14px;
   }
+
+  .liste-rdv-entraineur {
+    padding: 28px 16px;
+  }
+
+  .liste-rdv-entraineur h2 {
+    font-size: 1.7rem;
+  }
+
   .rdv-actions {
     flex-direction: column;
   }
+
   .rdv-actions button {
     width: 100%;
   }

@@ -1,107 +1,156 @@
-/* demandesRecues.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-/* Conteneur principal */
-.demandes-recues-container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px;
+.demandes-recues-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
   background: linear-gradient(to bottom, #000000, #001f3f);
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
-  color: #fff;
+  color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  animation: fadeInUp 0.8s ease-out;
+}
+
+.demandes-recues-container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  background: rgba(20, 28, 48, 0.58);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.18);
   text-align: center;
 }
 
-/* Titre */
 .demandes-recues-container h2 {
   font-size: 2rem;
-  margin-bottom: 24px;
+  margin: 0 0 10px;
   color: #00ccff;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.6s ease-out;
 }
 
-/* Grille des cartes de demande */
+.demandes-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.98rem;
+  margin: 0 auto 28px;
+  max-width: 650px;
+}
+
 .demande-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
 }
 
-/* Carte individuelle */
 .demande-card {
-  background: rgba(20, 28, 48, 0.8);
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 0 12px rgba(0, 204, 255, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.6s ease-out;
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  padding: 24px 18px;
+  border-radius: 18px;
   text-align: center;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .demande-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 24px rgba(0, 204, 255, 0.3);
+  box-shadow: 0 0 28px rgba(0, 204, 255, 0.32);
 }
 
-/* Image profil */
 .demande-card img {
-  width: 80px;
-  height: 80px;
+  width: 105px;
+  height: 105px;
   border-radius: 50%;
-  border: 2px solid rgba(0, 204, 255, 0.6);
-  margin-bottom: 12px;
+  border: 3px solid rgba(0, 204, 255, 0.65);
+  margin-bottom: 16px;
   object-fit: cover;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* Nom du client */
 .demande-card h4 {
   font-size: 1.2rem;
-  margin: 8px 0;
+  margin: 8px 0 12px;
   color: #00e6ff;
 }
 
-/* Texte */
 .demande-card p {
-  margin: 4px 0;
-  font-size: 0.9rem;
-  color: #d0d0d0;
+  margin: 6px 0;
+  font-size: 0.94rem;
+  color: #d0d8e2;
+  line-height: 1.45;
 }
 
-/* Bouton accepter */
+.demande-card strong {
+  color: #ffffff;
+}
+
 .demande-card button {
-  margin-top: 12px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  background: #00ccff;
-  color: #000;
+  margin-top: 18px;
+  padding: 10px 24px;
+  border: 2px solid #00ccff;
+  border-radius: 24px;
+  background: transparent;
+  color: #00ccff;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.75);
 }
 
 .demande-card button:hover {
-  background: #00e6ff;
-  box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  background: #00ccff;
+  color: #000000;
   transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ccff;
 }
 
-/* Message "aucune demande" */
-.demandes-recues-container p {
-  font-size: 1.05rem;
-  color: #ccc;
-  margin-top: 20px;
+.empty-state,
+.card-loading {
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 28px 22px;
+  text-align: center;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.empty-state h3,
+.card-loading h4 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
 }
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+
+.empty-state p,
+.card-loading p {
+  color: #d0d8e2;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .demandes-recues-page {
+    padding: 30px 14px;
+  }
+
+  .demandes-recues-container {
+    padding: 28px 16px;
+  }
+
+  .demandes-recues-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .demande-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .demande-card img {
+    width: 92px;
+    height: 92px;
+  }
 }
