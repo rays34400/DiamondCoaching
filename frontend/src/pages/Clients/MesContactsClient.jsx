@@ -12,35 +12,44 @@ const MesContactsClient = () => {
   const [selectedEntraineur, setSelectedEntraineur] = useState(null);
   const [rdvs, setRdvs] = useState([]);
 
-useEffect(() => {
-  const fetchKey = async () => {
-    try {
-      if (!user?.token) return;
-      const keyRes = await axios.get('https://clientapi-u3uk.onrender.com/api/clients/key', {
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
-      setKeyClient(keyRes.data.keyClient);
-    } catch (err) {
-      console.error("Erreur récupération keyClient :", err);
-    }
-  };
-  fetchKey();
-}, [user]);
+  useEffect(() => {
+    const fetchKey = async () => {
+      try {
+        if (!user?.token) return;
+
+        const keyRes = await axios.get('https://clientapi-u3uk.onrender.com/api/clients/key', {
+          headers: { Authorization: `Bearer ${user.token}` },
+        });
+
+        setKeyClient(keyRes.data.keyClient);
+      } catch (err) {
+        console.error("Erreur récupération keyClient :", err);
+      }
+    };
+
+    fetchKey();
+  }, [user]);
 
   useEffect(() => {
     const fetchEntraineurs = async () => {
       try {
-        const res = await axios.get(`https://affectationapi.onrender.com/api/demandes/entraineursContact/${keyClient}`);
+        const res = await axios.get(
+          `https://affectationapi.onrender.com/api/demandes/entraineursContact/${keyClient}`
+        );
+
         const demandes = res.data;
 
         const entraineurDetails = await Promise.all(
           demandes.map(async (d) => {
             try {
-              const r = await axios.get(`https://entraineurapi.onrender.com/api/entraineurs/bykey/${d.keyEntraineur}`, {
-                headers: {
-                  Authorization: `Bearer ${user.token}`
+              const r = await axios.get(
+                `https://entraineurapi.onrender.com/api/entraineurs/bykey/${d.keyEntraineur}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${user.token}`
+                  }
                 }
-              });
+              );
               return r.data;
             } catch (err) {
               console.error(`Erreur entraineur ${d.keyEntraineur}`, err);
@@ -61,7 +70,9 @@ useEffect(() => {
 
   const fetchRendezVous = async (keyEntraineur) => {
     try {
-      const res = await axios.get(`https://rendezvousapi.onrender.com/api/rendezvous/entraineur/${keyEntraineur}`);
+      const res = await axios.get(
+        `https://rendezvousapi.onrender.com/api/rendezvous/entraineur/${keyEntraineur}`
+      );
       setRdvs(res.data);
     } catch (err) {
       console.error("Erreur récupération rdvs", err);
@@ -78,18 +89,21 @@ useEffect(() => {
     const dayOfWeek = today.getDay();
     const monday = new Date(today);
     monday.setDate(today.getDate() - dayOfWeek + 1);
-    
+
     const dates = [];
     for (let i = 0; i < 7; i++) {
       const d = new Date(monday);
       d.setDate(monday.getDate() + i);
       dates.push(d);
     }
+
     return dates;
   };
 
   const isSlotTaken = (dateStr, heure) => {
-    return rdvs.some(r => r.date === dateStr && r.heure === heure && ['en attente', 'confirmé'].includes(r.statut));
+    return rdvs.some(
+      r => r.date === dateStr && r.heure === heure && ['en attente', 'confirmé'].includes(r.statut)
+    );
   };
 
   const handleReserver = async (dateStr, heure) => {
@@ -100,6 +114,7 @@ useEffect(() => {
         date: dateStr,
         heure
       });
+
       alert("Demande envoyée !");
       await fetchRendezVous(selectedEntraineur.keyEntraineur);
     } catch (err) {
@@ -109,59 +124,79 @@ useEffect(() => {
   };
 
   return (
-    <div>
-      <h2>Mes Entraîneurs Affectés</h2>
-      {entraineurs.length === 0 ? (
-        <p>Aucun entraîneur affecté.</p>
-      ) : (
-        <div className="contact-grid">
-          {entraineurs.map(entraineur => (
-            <div key={entraineur._id} className="contact-card">
-              <img
-                src={`https://entraineurapi.onrender.com/uploads/${entraineur.photoProfile || 'default.png'}`}
-                alt="profil"
-                width="100"
-              />
-              <h4>{entraineur.nom} {entraineur.prenom}</h4>
-              <p>Email : {entraineur.email}</p>
-              <p>Téléphone : {entraineur.telephone}</p>
-              <p>Spécialité : {entraineur.specialite}</p>
-              <button onClick={() => handleChoisir(entraineur)}>Prendre RDV</button>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="mes-contacts-client-page">
+      <div className="mes-contacts-client-container">
+        <h2>Mes entraîneurs affectés</h2>
 
-      {selectedEntraineur && (
-        <div className="rdv-section">
-          <h3>Créneaux disponibles cette semaine - {selectedEntraineur.nom}</h3>
-          <div className="horaire-grille">
-            {getWeekDates().map(date => {
-              const jour = jours[date.getDay()];
-              const dateStr = date.toISOString().split('T')[0];
-              const dispo = selectedEntraineur.disponibilites.find(d => d.jour === jour);
-              if (!dispo) return null;
+        <p className="contacts-subtitle">
+          Retrouvez vos entraîneurs et réservez un créneau selon leurs disponibilités.
+        </p>
 
-              return (
-                <div key={dateStr} className="jour-disponibilite">
-                  <strong>{jour} ({dateStr})</strong>
-                  <div className="horaire-list">
-                    {dispo.heures.map(heure => (
-                      <button
-                        key={heure}
-                        disabled={isSlotTaken(dateStr, heure)}
-                        onClick={() => handleReserver(dateStr, heure)}
-                      >
-                        {heure}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+        {entraineurs.length === 0 ? (
+          <div className="empty-state">
+            <h3>Aucun entraîneur affecté</h3>
+            <p>Vos entraîneurs acceptés apparaîtront ici.</p>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="contact-grid">
+            {entraineurs.map((entraineur) => (
+              <div key={entraineur._id} className="contact-card">
+                <img
+                  src={`https://entraineurapi.onrender.com/uploads/${entraineur.photoProfile || 'default.png'}`}
+                  alt={`${entraineur.nom} ${entraineur.prenom}`}
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://via.placeholder.com/120x120?text=Coach';
+                  }}
+                />
+
+                <h4>{entraineur.nom} {entraineur.prenom}</h4>
+
+                <p><strong>Email :</strong> {entraineur.email || 'Non renseigné'}</p>
+                <p><strong>Téléphone :</strong> {entraineur.telephone || 'Non renseigné'}</p>
+                <p><strong>Spécialité :</strong> {entraineur.specialite || 'Non spécifiée'}</p>
+
+                <button onClick={() => handleChoisir(entraineur)}>
+                  Prendre RDV
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {selectedEntraineur && (
+          <div className="rdv-section">
+            <h3>Créneaux disponibles - {selectedEntraineur.nom}</h3>
+
+            <div className="horaire-grille">
+              {getWeekDates().map((date) => {
+                const jour = jours[date.getDay()];
+                const dateStr = date.toISOString().split('T')[0];
+                const dispo = selectedEntraineur.disponibilites.find(d => d.jour === jour);
+
+                if (!dispo) return null;
+
+                return (
+                  <div key={dateStr} className="jour-disponibilite">
+                    <strong>{jour} ({dateStr})</strong>
+
+                    <div className="horaire-list">
+                      {dispo.heures.map((heure) => (
+                        <button
+                          key={heure}
+                          disabled={isSlotTaken(dateStr, heure)}
+                          onClick={() => handleReserver(dateStr, heure)}
+                        >
+                          {heure}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

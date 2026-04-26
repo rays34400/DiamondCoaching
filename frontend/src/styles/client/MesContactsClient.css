@@ -1,123 +1,174 @@
-/* messagerie-client-contacts.css */
-
-/* Conteneur principal */
-.mes-contacts-client-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, #000000, #001f3f);
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
-  overflow-x: hidden;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Titres */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+}
+
+.mes-contacts-client-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mes-contacts-client-container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  background: rgba(20, 28, 48, 0.58);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.18);
+}
+
 .mes-contacts-client-container h2,
 .mes-contacts-client-container h3 {
   text-align: center;
   color: #00ccff;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.8s ease-out;
 }
 
-/* Grille d'entraîneurs */
+.contacts-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.98rem;
+  margin: 0 auto 28px;
+  max-width: 650px;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-  margin-bottom: 40px;
+  gap: 22px;
 }
 
-/* Carte profil */
 .contact-card {
-  background: rgba(20, 28, 48, 0.85);
-  padding: 16px;
-  border-radius: 16px;
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  padding: 24px 18px;
+  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 0 12px rgba(0, 204, 255, 0.15);
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.8s ease-out;
 }
 
 .contact-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 28px rgba(0, 204, 255, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 0 28px rgba(0, 204, 255, 0.32);
 }
 
-/* Photo */
 .contact-card img {
-  width: 110px;
-  height: 110px;
+  width: 105px;
+  height: 105px;
+  object-fit: cover;
   border-radius: 50%;
-  border: 3px solid rgba(0, 204, 255, 0.6);
-  margin-bottom: 14px;
+  border: 3px solid rgba(0, 204, 255, 0.65);
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* Nom et infos */
 .contact-card h4 {
-  font-size: 1.3rem;
-  margin: 6px 0;
+  font-size: 1.2rem;
+  margin: 8px 0 12px;
   color: #00e6ff;
 }
 
 .contact-card p {
-  margin: 4px 0;
-  font-size: 0.95rem;
-  color: #d0d0d0;
+  margin: 6px 0;
+  font-size: 0.94rem;
+  color: #d0d8e2;
+  line-height: 1.45;
 }
 
-/* Bouton Prendre RDV */
+.contact-card strong {
+  color: #ffffff;
+}
+
 .contact-card button {
-  margin-top: 12px;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 20px;
-  background: #00ccff;
-  color: #000;
+  margin-top: 18px;
+  padding: 10px 24px;
+  border: 2px solid #00ccff;
+  border-radius: 24px;
+  background: transparent;
+  color: #00ccff;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-}
-.contact-card button:hover {
-  background: #00e6ff;
-  box-shadow: 0 0 12px rgba(0, 204, 255, 0.5);
-  transform: scale(1.05);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.75);
 }
 
-/* Section rendez-vous */
+.contact-card button:hover {
+  background: #00ccff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ccff;
+}
+
+.empty-state {
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 28px 22px;
+  text-align: center;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
+}
+
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
+}
+
 .rdv-section {
   margin-top: 40px;
-  animation: fadeInUp 0.8s ease-out;
+  padding-top: 28px;
+  border-top: 1px solid rgba(0, 204, 255, 0.14);
 }
 
-/* Grille horaire */
+.rdv-section h3 {
+  margin-bottom: 24px;
+}
+
 .horaire-grille {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 16px;
 }
 
-/* Carte jour */
 .jour-disponibilite {
-  background: rgba(20, 28, 48, 0.92);
+  background: rgba(10, 18, 34, 0.86);
   padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0, 204, 255, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-.jour-disponibilite:hover {
-  box-shadow: 0 0 18px rgba(0, 204, 255, 0.2);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  box-shadow: 0 0 12px rgba(0, 204, 255, 0.1);
 }
 
 .jour-disponibilite strong {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   color: #00ccff;
+  text-transform: capitalize;
 }
 
-/* Boutons horaires */
 .horaire-list {
   display: flex;
   flex-wrap: wrap;
@@ -125,31 +176,42 @@
 }
 
 .horaire-list button {
-  padding: 6px 10px;
-  border: none;
+  padding: 7px 11px;
+  border: 1px solid rgba(0, 204, 255, 0.45);
   border-radius: 12px;
-  background: #001f3f;
-  color: #fff;
+  background: transparent;
+  color: #ffffff;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .horaire-list button:hover:not(:disabled) {
   background: #00ccff;
-  color: #000;
+  color: #000000;
 }
 
 .horaire-list button:disabled {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.12);
   cursor: not-allowed;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 600px) {
+  .mes-contacts-client-page {
+    padding: 30px 14px;
+  }
+
+  .mes-contacts-client-container {
+    padding: 28px 16px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card img {
+    width: 92px;
+    height: 92px;
+  }
 }
