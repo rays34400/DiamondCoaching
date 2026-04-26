@@ -11,14 +11,12 @@ const MessagerieClient = ({ keyEntraineur }) => {
   const [keyClient, setKeyClient] = useState('');
   const [socket, setSocket] = useState(null);
 
-  // 1. Init Socket.IO
   useEffect(() => {
     const newSocket = io('https://messageapi-1rc2.onrender.com');
     setSocket(newSocket);
     return () => newSocket.disconnect();
   }, []);
 
-  // 2. Load keyClient
   useEffect(() => {
     const fetchKey = async () => {
       const res = await axios.get(
@@ -27,10 +25,10 @@ const MessagerieClient = ({ keyEntraineur }) => {
       );
       setKeyClient(res.data.keyClient);
     };
+
     if (user?.id && user?.token) fetchKey();
   }, [user]);
 
-  // 3. Load history, join room, set listener
   useEffect(() => {
     const fetchMessages = async () => {
       const res = await axios.get(
@@ -38,6 +36,7 @@ const MessagerieClient = ({ keyEntraineur }) => {
       );
       setMessages(res.data);
     };
+
     if (keyClient && keyEntraineur) {
       fetchMessages();
       socket?.emit('joinRoom', { keyClient, keyEntraineur });
@@ -45,26 +44,31 @@ const MessagerieClient = ({ keyEntraineur }) => {
         setMessages((prev) => [...prev, msg]);
       });
     }
+
     return () => {
       socket?.off('receiveMessage');
     };
   }, [keyClient, keyEntraineur, socket]);
 
-  // 4. Auto-scroll to latest message
   useEffect(() => {
     const container = document.querySelector('.messages-list');
     if (container) container.scrollTop = container.scrollHeight;
   }, [messages]);
 
-  // 5. Send message
   const sendMessage = async () => {
     if (!newMessage.trim()) return;
+
     const msgPayload = {
       senderKey: keyClient,
       receiverKey: keyEntraineur,
       contenu: newMessage,
     };
-    const res = await axios.post(`https://messageapi-1rc2.onrender.com/api/messages/send`, msgPayload);
+
+    const res = await axios.post(
+      'https://messageapi-1rc2.onrender.com/api/messages/send',
+      msgPayload
+    );
+
     socket?.emit('sendMessage', msgPayload);
     setMessages((prev) => [...prev, res.data.data]);
     setNewMessage('');
@@ -72,17 +76,25 @@ const MessagerieClient = ({ keyEntraineur }) => {
 
   return (
     <div className="messagerie-container">
-      <h3>Messagerie avec l’entraîneur</h3>
+      <h3>Conversation</h3>
+
       <div className="messages-list">
-        {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={`message-bubble ${msg.senderKey === keyClient ? 'sent' : 'received'}`}
-          >
-            {msg.contenu}
+        {messages.length === 0 ? (
+          <div className="no-message">
+            Aucun message pour le moment.
           </div>
-        ))}
+        ) : (
+          messages.map((msg, idx) => (
+            <div
+              key={idx}
+              className={`message-bubble ${msg.senderKey === keyClient ? 'sent' : 'received'}`}
+            >
+              {msg.contenu}
+            </div>
+          ))
+        )}
       </div>
+
       <div className="message-input">
         <input
           type="text"
@@ -90,6 +102,7 @@ const MessagerieClient = ({ keyEntraineur }) => {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Écrire un message..."
         />
+
         <button onClick={sendMessage}>Envoyer</button>
       </div>
     </div>

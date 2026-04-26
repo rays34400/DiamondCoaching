@@ -1,118 +1,180 @@
-/* Container principal */
-.messagerie-contacts-client {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, #000, #001f3f);
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Titre */
-.messagerie-contacts-client h2 {
+.messagerie-contacts-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.messagerie-contacts-container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  background: rgba(20, 28, 48, 0.58);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.18);
+}
+
+.messagerie-contacts-container h2 {
   text-align: center;
   color: #00ccff;
-  margin-bottom: 24px;
+  margin: 0 0 10px;
+  font-size: 2rem;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.8s ease-out;
 }
 
-/* Grille des contacts */
+.messagerie-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.98rem;
+  margin: 0 auto 28px;
+  max-width: 650px;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+  gap: 22px;
 }
 
 .contact-card {
-  background: rgba(20,28,48,0.8);
-  padding: 20px;
-  border-radius: 16px;
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  padding: 24px 18px;
+  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(0,204,255,0.15);
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.8s ease-out;
 }
 
 .contact-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 0 30px rgba(0,204,255,0.4);
+  box-shadow: 0 0 28px rgba(0, 204, 255, 0.32);
 }
 
 .contact-card img {
-  width: 120px;
-  height: 120px;
+  width: 105px;
+  height: 105px;
   border-radius: 50%;
-  border: 3px solid rgba(0,204,255,0.6);
-  margin-bottom: 12px;
+  object-fit: cover;
+  border: 3px solid rgba(0, 204, 255, 0.65);
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .contact-card h4 {
-  font-size: 1.25rem;
-  margin: 8px 0;
+  font-size: 1.2rem;
+  margin: 8px 0 12px;
   color: #00e6ff;
 }
 
 .contact-card p {
-  margin: 4px 0;
-  font-size: 0.9rem;
-  color: #d0d0d0;
+  margin: 6px 0;
+  font-size: 0.94rem;
+  color: #d0d8e2;
+  line-height: 1.45;
 }
 
-/* Bouton ouvrir conversation */
+.contact-card strong {
+  color: #ffffff;
+}
+
 .contact-card button {
-  margin-top: 12px;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 20px;
-  background: #00ccff;
-  color: #000;
+  margin-top: 18px;
+  padding: 10px 24px;
+  border: 2px solid #00ccff;
+  border-radius: 24px;
+  background: transparent;
+  color: #00ccff;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.75);
 }
 
 .contact-card button:hover {
-  background: #00e6ff;
-  box-shadow: 0 0 12px rgba(0,204,255,0.5);
+  background: #00ccff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #00ccff;
 }
 
-/* Section messagerie ouverte */
+.empty-state {
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 28px 22px;
+  text-align: center;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
+}
+
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
+}
+
 .messagerie-section {
   margin-top: 40px;
-  position: relative;
-  animation: fadeInUp 0.8s ease-out;
+  padding-top: 28px;
+  border-top: 1px solid rgba(0, 204, 255, 0.14);
 }
 
-/* Bouton fermer conversation */
 .close-btn {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding: 6px 12px;
-  background: #ff4d4d;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
+  display: block;
+  margin: 0 auto 20px;
+  padding: 9px 16px;
+  background: transparent;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  border-radius: 14px;
   font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(255,77,77,0.6);
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s;
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.35);
+  transition: all 0.3s ease;
 }
 
 .close-btn:hover {
-  background: #ff6666;
-  box-shadow: 0 0 12px rgba(255,102,102,0.8);
+  background: #ff4d4d;
+  color: #000000;
   transform: translateY(-2px);
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
+@media (max-width: 600px) {
+  .messagerie-contacts-page {
+    padding: 30px 14px;
+  }
+
+  .messagerie-contacts-container {
+    padding: 28px 16px;
+  }
+
+  .messagerie-contacts-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card img {
+    width: 92px;
+    height: 92px;
+  }
 }
