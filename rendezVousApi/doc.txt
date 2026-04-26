@@ -1,0 +1,66 @@
+API RendezVous 
+
+rendezVousController.js
+
+createRendezVous : Crée un rendez-vous { date, heure, keyClient, keyEntraineur }, statut par défaut "en attente".
+
+getByClient : Retourne tous les rendez-vous d’un client via keyClient.
+
+getByEntraineur : Retourne tous les rendez-vous d’un entraîneur via keyEntraineur.
+
+updateStatut : Met à jour le statut d’un rendez-vous par id.
+
+deleteRendezVous : Supprime un rendez-vous par id.
+
+
+/***********************************************************************/
+RendezVous.js
+
+date : String requis — Date du rendez-vous.
+
+heure : String requis — Heure du rendez-vous.
+
+keyClient : String requis — Clé fonctionnelle du client.
+
+keyEntraineur : String requis — Clé fonctionnelle de l’entraîneur.
+
+statut : String, valeurs possibles ['en attente', 'confirmé', 'refusé', 'fait'], défaut = 'en attente'.
+
+timestamps : createdAt, updatedAt.
+
+*************************************************************************
+rendezVousRoutes.js (préfixe : /api/rendezvous)
+
+POST /add — Non protégé — Créer un rendez-vous.
+
+GET /client/:keyClient — Non protégé — Voir rendez-vous d’un client.
+
+GET /entraineur/:keyEntraineur — Non protégé — Voir rendez-vous d’un entraîneur.
+
+PUT /statut/:id — Non protégé — Modifier statut d’un rendez-vous.
+
+DELETE /delete/:id — Non protégé — Supprimer un rendez-vous.
+
+*************************************************************************
+authClient.js
+
+Vérifie JWT dans header Authorization, rôle = 'client'.
+
+401 si manquant/invalide, 403 si mauvais rôle.
+
+middleware/authEntraineur.js
+
+Vérifie JWT dans header Authorization, rôle = 'entraineur'.
+
+401 si manquant/invalide, 403 si mauvais rôle.
+
+***********************************************************************
+index.js (serveur)
+
+Express + CORS + JSON parser.
+
+Connexion MongoDB via MONGO_URL.
+
+Monte les routes sur /api/rendezvous.
+
+Écoute sur PORT (défaut 3008).

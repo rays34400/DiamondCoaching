@@ -1,0 +1,77 @@
+API Exercices 
+
+exerciceController.js 
+
+createExercice : Crée un exercice (nom, description, note, programmeId) + gère fichiers image/video via req.files; valide nom et programmeId; renvoie 201 avec l’objet créé. 
+
+getAllExercices : Retourne la liste complète des exercices. 
+
+getExercicesByProgramme : Liste les exercices d’un programmeId donné. 
+
+deleteExercice : Supprime par id; 404 si introuvable. 
+
+getExerciceById : Récupère un exercice par id; 404 si introuvable. 
+
+updateExercice : Met à jour nom, description, note et, si fournis, les fichiers image/video; 404 si introuvable. 
+////////////////////////////////////////////////////////////////////
+
+models/Exercice.js 
+
+nom : String, required.
+
+description : String, défaut ''.
+
+image : String (nom de fichier).
+
+video : String (nom de fichier).
+
+note : String (texte libre).
+
+programmeId : String requis (stocké comme Schema.Types.String).
+
+timestamps : createdAt, updatedAt. 
+//////////////////////////////////////////////////////////////////////
+
+exerciceRoutes.js (préfixe : /api/exercices) 
+
+POST /add — Protégé (entraineur) — authEntraineur, upload.fields([{name:'image'},{name:'video'}]) — créer un exercice. 
+
+GET / — Public — liste tous les exercices. 
+
+GET /programme/:programmeId — Public — exercices d’un programme. 
+
+GET /:id — Public — détail d’un exercice. 
+
+PUT /modifier/:id — Protégé (entraineur) — authEntraineur, upload.fields([...]) — modifier un exercice. 
+
+DELETE /delete/:id — Protégé (entraineur) — authEntraineur — supprimer un exercice. 
+/////////////////////////////////////////////////////////////////////
+
+middleware/authEntraineur.js 
+
+Vérifie Authorization: Bearer <token>; jwt.verify.
+
+Exige decoded.role === 'entraineur' sinon 403; en cas d’absence/invalidité du token → 401.
+
+Dépose req.entraineurId = decoded.id, puis next(). 
+///////////////////////////////////////////////////////////////////////////
+
+middleware/upload.js 
+
+Crée le dossier /uploads si absent.
+
+Stockage disque; nommage Date.now()-<originalname_sans_espaces>.
+
+fileFilter : autorise images (jpeg/png/jpg) et vidéos (mp4/mpeg/quicktime).
+
+Export : upload pour fields([{ name:'image' }, { name:'video' }]). 
+//////////////////////////////////////////////////////////////////////
+index.js 
+
+Express + CORS + express.json()/urlencoded.
+
+Statique : sert /uploads depuis le dossier uploads.
+
+Monte les routes : /api/exercices.
+
+Connexion MongoDB via MONGODB_URI; démarre sur PORT (défaut 3004).

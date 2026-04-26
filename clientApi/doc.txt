@@ -1,0 +1,84 @@
+API Clients 
+
+clientController.js
+
+registerClient : Inscription, vérifie email, hash mot de passe, gère photo optionnelle, génère keyClient.
+
+loginClient : Connexion, vérifie identifiants, retourne JWT + id.
+
+getKeyClientById : Public, retourne keyClient par id.
+
+getKeyClientByToken : Protégé, retourne keyClient depuis token.
+
+getClientByKey : Public, cherche client par keyClient.
+
+getClientById : Protégé, retourne profil sans mot de passe.
+
+updateClient : Protégé, modifie infos de base.
+
+updatePhotoProfile : Protégé, change photo de profil.
+
+deleteClient : Protégé, supprime compte.
+
+getClientByName : Protégé, recherche par nom.
+
+/////////////////////////////////////////////////////////////////////
+
+Client.js
+
+nom, prenom : Obligatoires.
+
+email : Obligatoire, unique.
+
+password : Obligatoire, hashé.
+
+adresse, telephone : Obligatoires.
+
+photoProfile : Chemin image (optionnel).
+
+photo : Tableau d’images (optionnel).
+
+role : 'client' par défaut.
+
+keyClient : Obligatoire, unique, identifiant fonctionnel.
+
+timestamps : createdAt, updatedAt.
+
+////////////////////////////////////////////////////////////////
+
+routes/clientRoutes.js (préfixe : /api/clients)
+POST /register — Non protégé — upload — Inscrire client.
+POST /login — Non protégé — Connexion.
+GET /byname/:nom — Protégé — auth — Chercher par nom.
+GET /key — Protégé — auth — Clé via token.
+GET /bykey/:keyClient — Non protégé — Chercher par clé.
+GET /:id — Protégé — auth — Profil par id.
+PUT /update/:id — Protégé — auth — Modifier infos.
+PUT /update-photo/:id — Protégé — auth, upload — Changer photo.
+DELETE /delete/:id — Protégé — auth — Supprimer.
+
+/////////////////////////////////////////////////////////////////////
+authClient.js
+
+Vérifie JWT dans Authorization: Bearer .
+
+Ajoute { id, role } dans req.user si valide, sinon 401.
+
+middleware/upload.js
+
+Stocke fichiers dans /uploads.
+
+Autorise seulement images (jpeg/jpg/png/gif).
+Limite : 5 Mo.
+
+/////////////////////////////////////////////////////////////
+
+index.js
+
+Charge env, connecte à MongoDB.
+
+Active CORS, JSON parser, fichiers statiques /uploads.
+
+Monte routes clients sur /api/clients.
+
+Écoute sur PORT (défaut 3001).

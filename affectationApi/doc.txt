@@ -1,0 +1,75 @@
+API Affectations 
+
+affectationProgrammeController.js
+
+affecterProgramme : Crée une affectation programme ↔ client à partir de programmeId, keyClient, keyEntraineur.
+
+getProgrammesPourClientComplet : Liste les programmes d’un client (via keyClient) en récupérant les détails depuis l’API programme.
+
+getProgrammesPourEntraineur : Liste les affectations créées par un entraîneur (via keyEntraineur).
+
+///////////////////////////////////////////////////////////////////
+demandeAffectationController.js
+
+envoyerDemande : Client envoie demande à un entraîneur (vérifie doublon).
+
+getDemandesByEntraineur : Liste demandes reçues par un entraîneur (statut en_attente).
+
+getClientsAffectes : Clients liés à un entraîneur (statut accepté).
+
+getEntraineursAffectes : Entraîneurs liés à un client (statut accepté).
+
+accepterDemande : Change le statut d’une demande en “accepte”.
+
+//////////////////////////////////////////////////////////////////////
+AffectationProgramme.js
+
+keyClient : String requis.
+
+keyEntraineur : String requis.
+
+idProgramme : String requis.
+
+dateAffectation : Date, défaut = maintenant.
+
+
+
+///////////////////////////////////////////////////////////////////////
+DemandeAffectation.js
+
+keyClient : String requis.
+
+keyEntraineur : String requis.
+
+statut : String, défaut = "en_attente".
+
+date : Date, défaut = maintenant.
+
+
+
+//////////////////////////////////////////////////////////////////////
+affectationProgrammeRoutes.js (préfixe : /api/affectations)
+POST /affecter — Non protégé — Créer affectation programme ↔ client.
+GET /programmesClientComplet/:keyClient — Non protégé — Programmes d’un client avec détails.
+GET /entraineur/:key — Non protégé — Affectations d’un entraîneur.
+
+
+///////////////////////////////////////////////////////////////////////
+demandeAffectationRoutes.js (préfixe : /api/demandes)
+POST /envoyer — Non protégé — Envoyer demande client → entraîneur.
+GET /entraineur/:keyEntraineur — Non protégé — Voir demandes reçues (en_attente).
+GET /clientsContact/:keyEntraineur — Non protégé — Clients liés à un entraîneur.
+GET /entraineursContact/:keyClient — Non protégé — Entraîneurs liés à un client.
+PUT /accepter/:id — Non protégé — Accepter demande.
+
+
+////////////////////////////////////////////////////////////////////////
+index.js
+
+Charge env, connecte à MongoDB.
+
+Active CORS, JSON parser.
+
+ /api/demandes et /api/affectations.
+
+Écoute sur PORT (défaut 3007).

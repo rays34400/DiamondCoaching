@@ -1,0 +1,71 @@
+API Entraîneur 
+
+controllers/entraineurController.js
+
+registerEntraineur : Inscription entraîneur, vérifie email, hash mot de passe, parse disponibilités, gère photo optionnelle, génère keyEntraineur.
+
+loginEntraineur : Connexion, vérifie identifiants, retourne JWT + infos entraîneur.
+
+updateDisponibilites : Met à jour disponibilités via keyEntraineur.
+
+getAllEntraineurs : Liste tous les entraîneurs.
+
+getEntraineurById : Protégé, retourne entraîneur par id (sans password).
+
+updateEntraineur : Protégé, modifie infos de base (sans photo).
+
+getEntraineurByKey : Retourne entraîneur via keyEntraineur.
+
+updatePhotoProfile : Protégé, change photo de profil.
+
+deleteEntraineur : Protégé, supprime compte entraîneur.
+
+getEntraineurByName : Protégé, recherche entraîneur par nom.
+/////////////////////////////////////////////////////////////////////////
+
+models/Entraineur.js
+
+nom, prenom, email, password, adresse, telephone, specialite : Obligatoires.
+
+disponibilites : Tableau d’objets { jour, heures[] } (jour = lundi à dimanche).
+
+photoProfile : String (défaut vide).
+
+photo : Tableau de Strings.
+
+role : 'entraineur' par défaut.
+
+keyEntraineur : String requis, unique.
+
+timestamps : createdAt, updatedAt.
+////////////////////////////////////////////////////////////////////
+
+routes/entraineurRoutes.js (préfixe : /api/entraineurs)
+POST /register — Non protégé — upload — Inscription entraîneur.
+POST /login — Non protégé — Connexion.
+GET /all — Non protégé — Liste entraîneurs.
+GET /byname/:nom — Protégé — Cherche par nom.
+PUT /disponibilites/:keyEntraineur — Non protégé — Mettre à jour disponibilités.
+GET /bykey/:keyEntraineur — Non protégé — Cherche par clé.
+GET /:id — Protégé — Profil entraîneur.
+PUT /update/:id — Protégé — Modifier infos.
+PUT /update-photo/:id — Protégé — upload — Modifier photo profil.
+DELETE /delete/:id — Protégé — Supprimer compte.
+////////////////////////////////////////////////////////////////////
+
+middleware/authEntraineur.js
+
+Vérifie JWT dans Authorization: Bearer <token>.
+
+Ajoute { id, role } à req.user si valide, sinon 401.
+//////////////////////////////////////////////////////////////////////
+
+middleware/upload.js
+
+Stocke fichiers dans /uploads.
+
+Nomme <field>-<timestamp>-<rand>.<ext>.
+
+Autorise jpeg/jpg/png/gif.
+
+Limite : 5 Mo.

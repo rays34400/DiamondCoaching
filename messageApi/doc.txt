@@ -1,0 +1,44 @@
+API Messages 
+
+controllers/messageController.js 
+
+sendMessage : Crée et enregistre un message { senderKey, receiverKey, contenu }; répond 201 avec l’objet créé.
+
+getConversation : Récupère l’historique entre deux clés :key1 et :key2 (dans les deux sens), trié par dateEnvoi croissant.
+
+deleteMessage : Supprime un message par :id; répond 200 si OK.
+/////////////////////////////////////////////////////////////////////////
+
+models/Message.js 
+
+senderKey (String, required) : clé de l’expéditeur (client ou entraîneur).
+
+receiverKey (String, required) : clé du destinataire.
+
+contenu (String, required) : texte du message.
+
+dateEnvoi (Date, default: now) : horodatage d’envoi.
+////////////////////////////////////////////////////////////////////
+
+
+
+routes/messageRoutes.js (préfixe : /api/messages) 
+
+POST /send — Non protégé — envoyer un message (sendMessage).
+GET /conversation/:key1/:key2 — Non protégé — récupérer la conversation bidirectionnelle (getConversation).
+DELETE /:id — Non protégé — supprimer un message (deleteMessage).
+/////////////////////////////////////////////////////////////////////////
+
+index.js (serveur + Socket.IO) 
+
+Express : CORS, JSON, monte les routes /api/messages.
+
+MongoDB : connexion via MONGO_URL.
+
+Socket.IO :
+
+joinRoom({ keyClient, keyEntraineur }) → crée/joint une salle déterministe [keyClient, keyEntraineur].sort().join('-').
+
+sendMessage({ senderKey, receiverKey, contenu }) → émet receiveMessage à la salle [senderKey, receiverKey].sort().join('-').
+
+Démarrage : écoute sur PORT (défaut 3009).

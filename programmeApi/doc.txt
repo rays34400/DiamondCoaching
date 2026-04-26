@@ -1,0 +1,73 @@
+API Programmes 
+
+programmeController.js 
+
+createProgramme : Crée un programme { nom, niveau, objectif, description?, keyEntraineur }. Valide les champs requis. Répond 201 { message, programme }.
+
+getProgrammeById : Récupère un programme par :id. 404 si introuvable.
+
+getProgrammesByEntraineur : Liste tous les programmes d’un entraîneur via :key (clé fonctionnelle).
+
+modifierProgramme : Met à jour un programme par :id avec req.body. 404 si introuvable.
+
+supprimerProgramme : Supprime un programme par :id. 404 si introuvable.
+
+//////////////////////////////////////////////////////////////////////
+Programme.js 
+
+nom (String, required) : Nom du programme.
+
+niveau (String, required) : Niveau (débutant, intermédiaire, avancé…).
+
+objectif (String, required) : Objectif du programme.
+
+description (String, default: '') : Détails optionnels.
+
+keyEntraineur (String, required) : Clé fonctionnelle de l’entraîneur propriétaire.
+
+timestamps : createdAt, updatedAt.
+
+///////////////////////////////////////////////////////////////////////
+
+programmeRoute.js (préfixe : /api/programmes) 
+
+POST /add — Protégé (role entraineur) — verifyToken, authorizeRole('entraineur') — créer un programme.
+GET /entraineur/:key — Public — lister programmes d’un entraîneur.
+PUT /modifier/:id — Protégé (role entraineur) — verifyToken, authorizeRole('entraineur') — modifier un programme.
+DELETE /delete/:id — Protégé (role entraineur) — verifyToken, authorizeRole('entraineur') — supprimer un programme.
+GET /:id — Public — obtenir un programme par ID.
+
+
+///////////////////////////////////////////////////////////////////////////
+authEntraineur.js 
+
+verifyToken : Vérifie Authorization: Bearer <token>, jwt.verify, place { id, role } dans req.user. 401 si manquant, 403 si invalide.
+
+authorizeRole(role) : Vérifie req.user.role === role, sinon 403.
+
+
+
+///////////////////////////////////////////////////
+upload.js (pour futurs médias) 
+
+Stockage disque dans uploads/.
+
+Nommage unique Date.now()-<rand>.<ext>.
+
+Limite : 50 Mo.
+
+fileFilter : autorise jpeg/jpg/png/mp4/mov/avi.
+
+
+///////////////////////////////////////////////////////////////////////
+index.js (serveur) 
+
+Express + CORS + parsers JSON/URL-encoded.
+
+Statique : sert /uploads/programmes.
+
+Monte les routes : /api/programmes.
+
+Connexion MongoDB via MONGO_URI.
+
+Démarre sur PORT (défaut 3003).
