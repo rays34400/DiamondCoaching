@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useAuth } from '../../context/AuthContext';
 import '../../styles/client/liste-rdv-client.css';
 
 const ListeRendezVousClient = ({ keyClient }) => {
@@ -9,7 +8,9 @@ const ListeRendezVousClient = ({ keyClient }) => {
   useEffect(() => {
     const fetchRendezVous = async () => {
       try {
-        const res = await axios.get(`https://rendezvousapi.onrender.com/api/rendezvous/client/${keyClient}`);
+        const res = await axios.get(
+          `https://rendezvousapi.onrender.com/api/rendezvous/client/${keyClient}`
+        );
         setRendezVous(res.data);
       } catch (err) {
         console.error('Erreur chargement rendez-vous :', err);
@@ -22,34 +23,44 @@ const ListeRendezVousClient = ({ keyClient }) => {
   const deleteRdv = async (id) => {
     try {
       await axios.delete(`https://rendezvousapi.onrender.com/api/rendezvous/delete/${id}`);
-      setRendezVous(prev => prev.filter(r => r._id !== id));
+      setRendezVous((prev) => prev.filter((r) => r._id !== id));
     } catch (err) {
-      console.error("Erreur lors de la suppression", err);
+      console.error('Erreur lors de la suppression', err);
     }
   };
 
   return (
-    <div className="liste-rdv-client">
-      <h3>Mes Rendez-vous</h3>
-      {rendezVous.length === 0 ? (
-        <p>Aucun rendez-vous trouvé.</p>
-      ) : (
-        <ul>
-          {rendezVous.map(r => (
-            <li key={r._id}>
-              <strong>{r.date}</strong> à <strong>{r.heure}</strong><br />
-              Statut : <em>{r.statut}</em>
-              <div className="rdv-actions">
+    <div className="liste-rdv-page">
+      <div className="liste-rdv-container">
+        <h2>Mes rendez-vous</h2>
+
+        {rendezVous.length === 0 ? (
+          <div className="empty-state">
+            <h3>Aucun rendez-vous</h3>
+            <p>Vos rendez-vous apparaîtront ici.</p>
+          </div>
+        ) : (
+          <div className="rdv-grid">
+            {rendezVous.map((r) => (
+              <div key={r._id} className="rdv-card">
+                <p className="rdv-date">
+                  {r.date} à {r.heure}
+                </p>
+
+                <p className="rdv-status">
+                  Statut : <span>{r.statut}</span>
+                </p>
+
                 {r.statut !== 'fait' && (
-                  <button onClick={() => deleteRdv(r._id)} style={{ color: 'red' }}>
+                  <button className="rdv-delete-btn" onClick={() => deleteRdv(r._id)}>
                     Annuler
                   </button>
                 )}
               </div>
-            </li>
-          ))}
-        </ul>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

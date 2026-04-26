@@ -1,0 +1,122 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.liste-rdv-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.liste-rdv-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 32px 24px;
+  background: rgba(20, 28, 48, 0.85);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 22px;
+  box-shadow: 0 0 22px rgba(0, 204, 255, 0.22);
+}
+
+.liste-rdv-container h2 {
+  text-align: center;
+  color: #00ccff;
+  margin-bottom: 28px;
+  font-size: 2rem;
+  text-shadow: 0 0 8px rgba(0, 204, 255, 0.8);
+}
+
+.rdv-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.rdv-card {
+  background: rgba(10, 18, 34, 0.9);
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 204, 255, 0.18);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.12);
+}
+
+.rdv-date {
+  color: #ffffff;
+  font-size: 1rem;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.rdv-status {
+  color: #d0d8e2;
+  margin: 0;
+}
+
+.rdv-status span {
+  color: #00ccff;
+  font-weight: 700;
+}
+
+.rdv-delete-btn {
+  margin-top: 14px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.rdv-delete-btn:hover {
+  background: #ff4d4d;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+.empty-state {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 28px 20px;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 18px;
+}
+
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .liste-rdv-page {
+    padding: 30px 14px;
+    align-items: flex-start;
+  }
+
+  .liste-rdv-container {
+    padding: 28px 18px;
+  }
+
+  .liste-rdv-container h2 {
+    font-size: 1.7rem;
+  }
+}
