@@ -1,128 +1,242 @@
-/* ======= Inscription Entraîneur ======= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-/* Container principal */
-.entraineur-inscription-container {
+.entraineur-inscription-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 60px 20px;
-  min-height: 100vh;
-  background: linear-gradient(145deg, #000000, #001f3f);
+  align-items: flex-start;
   color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  animation: fadeInUp 0.8s ease-out;
 }
 
-/* Titre */
-.entraineur-inscription-container .title {
-  font-size: 2.4rem;
-  margin-bottom: 30px;
+.entraineur-inscription-card {
+  width: 100%;
+  max-width: 680px;
+  padding: 34px 28px;
+  background: rgba(20, 28, 48, 0.88);
+  border: 1px solid rgba(0, 204, 255, 0.18);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.25);
+}
+
+.entraineur-inscription-card h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 0 10px;
   color: #00ccff;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.8s ease-out;
 }
 
-/* Formulaire */
+.inscription-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.95rem;
+  margin: 0 0 28px;
+}
+
 .inscription-form {
   width: 100%;
-  max-width: 500px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
-  animation: fadeIn 0.8s ease-out;
 }
 
-/* Groupes de champs */
-.inscription-form .form-group {
-  margin-bottom: 20px;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
 }
 
-.inscription-form .form-group label {
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 1rem;
+  margin-bottom: 8px;
   color: #cceeff;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
-/* Champs input */
-.inscription-form input[type="text"],
-.inscription-form input[type="email"],
-.inscription-form input[type="password"],
-.inscription-form input[type="file"] {
+.form-group label span {
+  color: #91a8b8;
+  font-size: 0.85rem;
+}
+
+.inscription-form input,
+.inscription-form select {
   width: 100%;
-  padding: 12px 16px;
+  padding: 13px 15px;
   font-size: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 204, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
   color: #ffffff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* Encadrement bleu sur focus et hover */
-.inscription-form input:hover,
-.inscription-form input:focus {
+.inscription-form input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.inscription-form input:focus,
+.inscription-form select:focus {
   border-color: #00ccff;
-  box-shadow: 0 0 8px rgba(0, 204, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.45);
   outline: none;
 }
 
-/* Bouton de soumission */
-.submit-button {
-  display: inline-block;
+.inscription-form select option {
+  color: #000000;
+}
+
+.inscription-form input[type="file"] {
+  cursor: pointer;
+  padding: 11px 14px;
+}
+
+.availability-box {
+  margin-top: 24px;
+  padding: 22px 18px;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+}
+
+.availability-box h3 {
+  text-align: center;
+  color: #00ccff;
+  margin: 0 0 18px;
+  text-shadow: 0 0 6px rgba(0, 204, 255, 0.7);
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  gap: 10px;
+}
+
+.checkbox-item {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  margin: 0 !important;
+  padding: 10px 12px;
+  background: rgba(20, 28, 48, 0.85);
+  border: 1px solid rgba(0, 204, 255, 0.12);
+  border-radius: 12px;
+  color: #d0d8e2 !important;
+  cursor: pointer;
+}
+
+.checkbox-item input {
+  width: auto;
+  margin: 0;
+  accent-color: #00ccff;
+}
+
+.add-dispo-button {
   width: 100%;
+  margin-top: 14px;
+  padding: 12px 18px;
+  border: 2px solid #00ccff;
+  border-radius: 14px;
+  background: transparent;
+  color: #00ccff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-dispo-button:hover {
+  background: #00ccff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(0, 204, 255, 0.7);
+}
+
+.dispos-list {
+  margin-top: 20px;
+}
+
+.dispos-list h4 {
+  color: #00ccff;
+  margin: 0 0 10px;
+}
+
+.dispos-list p {
+  color: #d0d8e2;
+  margin: 0;
+  text-align: center;
+}
+
+.dispos-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.dispos-list li {
+  padding: 11px 14px;
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.12);
+  border-radius: 12px;
+  color: #d0d8e2;
+}
+
+.dispos-list strong {
+  color: #ffffff;
+  text-transform: capitalize;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 22px;
   padding: 14px 20px;
-  margin-top: 10px;
-  background-color: transparent;
+  background: transparent;
   border: 2px solid #00ccff;
   color: #00ccff;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 8px #00ccff;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.8);
 }
 
 .submit-button:hover {
-  background-color: #00ccff;
+  background: #00ccff;
   color: #000000;
-  transform: scale(1.03);
+  transform: translateY(-2px);
   box-shadow: 0 0 20px #00ccff;
 }
 
-/* Input file spécifique */
-.inscription-form input[type="file"] {
-  cursor: pointer;
-}
-
-.inscription-form input[type="file"]:hover {
-  border-color: #00ccff;
-}
-
-/* Responsive pour mobile */
-@media (max-width: 480px) {
-  .entraineur-inscription-container {
-    padding: 40px 10px;
+@media (max-width: 600px) {
+  .entraineur-inscription-page {
+    padding: 30px 14px;
   }
-  .inscription-form {
-    padding: 20px;
-  }
-}
 
-/* Animations définies précédemment */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  .entraineur-inscription-card {
+    padding: 28px 20px;
+  }
+
+  .entraineur-inscription-card h2 {
+    font-size: 1.7rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .checkbox-group {
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+  }
 }

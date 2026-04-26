@@ -36,21 +36,42 @@ const ConnexionEntraineur = () => {
   };
 
   return (
-    <div className="entraineur-connexion-container">
-      <h2>Connexion Entraîneur</h2>
-      <form onSubmit={handleSubmit} className="connexion-form">
-        <div className="form-group">
-          <label>Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
+    <div className="entraineur-connexion-page">
+      <div className="entraineur-connexion-card">
+        <h2>Connexion entraîneur</h2>
 
-        <div className="form-group">
-          <label>Mot de passe</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
+        <p className="connexion-subtitle">
+          Connectez-vous pour gérer vos clients, programmes et rendez-vous.
+        </p>
 
-        <button type="submit" className="submit-button">Se connecter</button>
-      </form>
+        <form onSubmit={handleSubmit} className="connexion-form">
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Votre email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Mot de passe</label>
+            <input
+              type="password"
+              placeholder="Votre mot de passe"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="submit-button">
+            Se connecter
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
