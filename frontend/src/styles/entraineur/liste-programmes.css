@@ -1,117 +1,432 @@
-/* Container principal */
-.liste-programmes-container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 30px;
-  background: linear-gradient(to bottom, #000000, #001f3f);
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0, 204, 255, 0.3);
-  color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  animation: fadeInUp 0.8s ease-out;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Titre */
+.liste-programmes-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #000000, #001f3f);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.liste-programmes-container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 34px 24px;
+  background: rgba(20, 28, 48, 0.58);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.18);
+}
+
 .liste-programmes-container h2 {
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 24px;
+  margin: 0 0 10px;
   color: #00ccff;
   text-shadow: 0 0 8px #00ccff;
-  animation: fadeInDown 0.6s ease-out;
 }
 
-/* Liste */
+.programmes-subtitle {
+  text-align: center;
+  color: #d0d8e2;
+  font-size: 0.98rem;
+  margin: 0 auto 28px;
+  max-width: 650px;
+}
+
 .programme-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 22px;
 }
 
-/* Item */
 .programme-item {
-  background: rgba(20, 28, 48, 0.85);
-  padding: 20px;
-  border-radius: 14px;
-  border: 2px solid transparent;
-  box-shadow: 0 0 15px rgba(0, 204, 255, 0.1);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  animation: fadeInUp 0.5s ease-out;
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 18px;
+  padding: 24px 20px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .programme-item:hover {
-  border-color: #00ccff;
-  box-shadow: 0 0 25px rgba(0, 204, 255, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 0 28px rgba(0, 204, 255, 0.32);
 }
 
-/* Contenu */
 .programme-item h3 {
-  margin: 0 0 8px;
-  font-size: 1.3rem;
+  margin: 0 0 14px;
   color: #00e6ff;
+  font-size: 1.35rem;
+  text-align: center;
 }
 
 .programme-item p {
-  margin: 6px 0;
-  font-size: 0.95rem;
-  color: #d0d0d0;
+  margin: 8px 0;
+  color: #d0d8e2;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  text-align: center;
 }
 
-/* Boutons */
+.programme-item strong {
+  color: #ffffff;
+}
+
 .programme-buttons {
-  margin-top: 12px;
+  margin-top: 18px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  justify-content: center;
+  gap: 10px;
 }
 
 .programme-buttons button {
-  padding: 8px 14px;
+  padding: 9px 16px;
+  border: 2px solid #00ccff;
+  border-radius: 20px;
+  background: transparent;
+  color: #00ccff;
   font-size: 0.9rem;
-  border: none;
-  border-radius: 12px;
-  background: rgba(0, 204, 255, 0.2);
-  color: #fff;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.5);
 }
 
 .programme-buttons button:hover {
   background: #00ccff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px #00ccff;
+}
+
+.empty-state {
+  max-width: 520px;
+  margin: 35px auto 0;
+  padding: 28px 22px;
+  text-align: center;
+  background: rgba(10, 18, 34, 0.75);
+  border: 1px solid rgba(0, 204, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 0 16px rgba(0, 204, 255, 0.14);
+}
+
+.empty-state h3 {
+  color: #00ccff;
+  margin: 0 0 10px;
+}
+
+.empty-state p {
+  color: #d0d8e2;
+  margin: 0;
+}
+
+/* MODALS */
+
+.edit-modal,
+.modal-ajout,
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: linear-gradient(to bottom, #001f3f, #000000);
+  border: 1px solid rgba(0, 204, 255, 0.18);
+  border-radius: 22px;
+  padding: 28px 22px;
+  color: #ffffff;
+  box-shadow: 0 0 24px rgba(0, 204, 255, 0.35);
+}
+
+.modal-content h3 {
+  text-align: center;
+  color: #00ccff;
+  margin: 0 0 20px;
+  text-shadow: 0 0 6px #00ccff;
+}
+
+.modal-content form {
+  width: 100%;
+}
+
+.modal-content label {
+  display: block;
+  margin: 12px 0 8px;
+  color: #cceeff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select,
+.search-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid rgba(0, 204, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(10, 18, 34, 0.88);
+  color: #ffffff;
+  font-size: 0.96rem;
+  transition: all 0.3s ease;
+}
+
+.modal-content textarea {
+  min-height: 95px;
+  resize: vertical;
+}
+
+.modal-content input[type="file"] {
+  cursor: pointer;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus,
+.search-input:focus {
+  outline: none;
+  border-color: #00ccff;
+  box-shadow: 0 0 8px rgba(0, 204, 255, 0.35);
+}
+
+.modal-content select option {
+  color: #000000;
+}
+
+.modal-buttons,
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.modal-buttons button,
+.modal-actions button,
+.modal-content button.submit,
+.modal-content button.cancel {
+  padding: 10px 18px;
+  border-radius: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-buttons button:first-child,
+.modal-actions button:first-child,
+.modal-content button.submit {
+  background: transparent;
+  border: 2px solid #00ccff;
+  color: #00ccff;
+}
+
+.modal-buttons button:first-child:hover,
+.modal-actions button:first-child:hover,
+.modal-content button.submit:hover {
+  background: #00ccff;
+  color: #000000;
   transform: translateY(-2px);
 }
 
-/* Tooltip (dans le compo ExercicesTooltip) */
-.exercices-tooltip {
+.modal-buttons button:last-child,
+.modal-actions button:last-child,
+.modal-content button.cancel {
+  background: transparent;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+}
+
+.modal-buttons button:last-child:hover,
+.modal-actions button:last-child:hover,
+.modal-content button.cancel:hover {
+  background: #ff4d4d;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+.close-button {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #ff4d4d;
+  background: transparent;
+  color: #ff4d4d;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background: #ff4d4d;
+  color: #000000;
+}
+
+/* DETAILS EXERCICES */
+
+.detail-exercice-list {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+  display: grid;
+  gap: 16px;
+}
+
+.exercice-detail-item {
+  background: rgba(20, 28, 48, 0.9);
+  border: 1px solid rgba(0, 204, 255, 0.14);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 0 12px rgba(0, 204, 255, 0.12);
+}
+
+.exercice-detail-item h4 {
+  color: #00e6ff;
+  margin: 0 0 12px;
+}
+
+.exercice-detail-item p {
+  color: #d0d8e2;
+  margin: 8px 0;
+}
+
+.exercice-detail-item strong {
+  color: #ffffff;
+}
+
+.exercice-media {
+  display: block;
+  max-width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  margin: 10px auto 0;
+  border: 2px solid rgba(0, 204, 255, 0.45);
+  border-radius: 12px;
+}
+
+.exercice-buttons {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.exercice-buttons button {
+  padding: 9px 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.exercice-buttons button:first-child {
+  border: 2px solid #00ccff;
+  background: transparent;
+  color: #00ccff;
+}
+
+.exercice-buttons button:last-child {
+  border: 2px solid #ff4d4d;
+  background: transparent;
+  color: #ff4d4d;
+}
+
+/* TOOLTIP */
+
+.exercice-tooltip {
   position: fixed;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.9);
-  color: #fff;
+  padding: 14px 16px;
+  background: rgba(10, 18, 34, 0.96);
+  color: #ffffff;
   border: 1px solid #00ccff;
-  border-radius: 8px;
+  border-radius: 14px;
   font-size: 0.9rem;
-  z-index: 1000;
+  z-index: 1200;
   pointer-events: none;
-  opacity: 0;
-  animation: fadeIn 0.3s ease-out forwards;
+  box-shadow: 0 0 14px rgba(0, 204, 255, 0.35);
+  max-width: 280px;
 }
 
-/* Animations génériques */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.exercice-tooltip h4 {
+  margin: 0 0 8px;
+  color: #00ccff;
 }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
+.exercice-tooltip p {
+  margin: 0;
+  color: #d0d8e2;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.exercice-tooltip ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exercice-tooltip li {
+  margin-bottom: 6px;
+  color: #d0d8e2;
+}
+
+.exercice-tooltip strong {
+  color: #ffffff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  .liste-programmes-page {
+    padding: 30px 14px;
+  }
+
+  .liste-programmes-container {
+    padding: 28px 16px;
+  }
+
+  .liste-programmes-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .programme-buttons,
+  .modal-buttons,
+  .modal-actions,
+  .exercice-buttons {
+    flex-direction: column;
+  }
+
+  .programme-buttons button,
+  .modal-buttons button,
+  .modal-actions button,
+  .exercice-buttons button {
+    width: 100%;
+  }
+
+  .modal-content {
+    padding: 26px 16px;
+  }
 }
