@@ -1,6 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
 .client-connexion-page {
-  min-height: 100vh;
-  padding: 60px 20px;
+  min-height: calc(100vh - 70px);
+  padding: 40px 20px;
   background: linear-gradient(to bottom, #000000, #001f3f);
   display: flex;
   align-items: center;
@@ -53,7 +61,6 @@
 
 .connexion-form input {
   width: 100%;
-  box-sizing: border-box;
   padding: 13px 15px;
   font-size: 1rem;
   border: 2px solid rgba(0, 204, 255, 0.25);
@@ -98,7 +105,7 @@
 
 @media (max-width: 480px) {
   .client-connexion-page {
-    padding: 35px 14px;
+    padding: 30px 14px;
   }
 
   .client-connexion-card {
